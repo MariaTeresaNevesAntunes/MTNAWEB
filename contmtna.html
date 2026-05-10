@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contactos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <button class="btn-menu" onclick="toggleMenu()">☰ Menu</button>
+      <nav id="menu">
+        <a href="indexmtna.html">Início</a>
+        <a href="blogmtna.html">Blogue</a>
+        <a href="galmtna.html">Galeria</a>
+        <a href="sobrmtna.html">Sobre Mim</a>
+        <a href="contmtna.html">Contactos</a>
+      </nav>
+    </header>
+    <h1>Contactos</h1>
+    <main>
+      <section class="contactos">
+        <h2>Informações de Contacto</h2>
+        <ul>
+          <li><strong>Telemóvel:</strong> 963319416</li>
+          <li><strong>Email:</strong> mtna20100922@gmail.com</li>
+        </ul>
+      </section>
+      <section class="formulario-contacto">
+        <h2>Enviar Mensagem</h2>
+        <div id="msg-feedback" class="feedback escondido"></div>
+        <form id="form-contacto" onsubmit="enviarFormulario(event)">
+          <div class="campo">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome" placeholder="O seu nome" />
+            <span class="erro" id="erro-nome"></span>
+          </div>
+          <div class="campo">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="exemplo@email.com"
+            />
+            <span class="erro" id="erro-email"></span>
+          </div>
+          <div class="campo">
+            <label for="assunto">Assunto</label>
+            <input
+              type="text"
+              id="assunto"
+              name="assunto"
+              placeholder="Assunto da mensagem"
+            />
+          </div>
+          <div class="campo">
+            <label for="mensagem">Mensagem *</label>
+            <textarea
+              id="mensagem"
+              name="mensagem"
+              rows="5"
+              placeholder="Escreva a sua mensagem..."
+            ></textarea>
+            <span class="erro" id="erro-mensagem"></span>
+          </div>
+          <button type="submit" class="btn-enviar">Enviar</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2026 MTNA Blogue — Página de contactos.</p>
+    </footer>
+    <script>
+      var mensagens = [];
+      function enviarFormulario(event) {
+        event.preventDefault();
+        document.getElementById("erro-nome").textContent = "";
+        document.getElementById("erro-email").textContent = "";
+        document.getElementById("erro-mensagem").textContent = "";
+        var nome = document.getElementById("nome").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var assunto = document.getElementById("assunto").value.trim();
+        var mensagem = document.getElementById("mensagem").value.trim();
+        var temErros = false;
+        if (nome === "") {
+          document.getElementById("erro-nome").textContent =
+            "O nome é obrigatório.";
+          temErros = true;
+        }
+        if (email === "") {
+          document.getElementById("erro-email").textContent =
+            "O email é obrigatório.";
+          temErros = true;
+        } else if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+          document.getElementById("erro-email").textContent =
+            "Introduza um email válido.";
+          temErros = true;
+        }
+        if (mensagem === "") {
+          document.getElementById("erro-mensagem").textContent =
+            "A mensagem é obrigatória.";
+          temErros = true;
+        }
+        if (temErros) {
+          mostrarFeedback("Por favor corrija os erros acima.", "erro");
+          return;
+        }
+        var novaMensagem = {
+          id: mensagens.length + 1,
+          nome: nome,
+          email: email,
+          assunto: assunto,
+          mensagem: mensagem,
+          createdAt: new Date().toLocaleString("pt-PT"),
+        };
+        mensagens.push(novaMensagem);
+        mostrarFeedback(
+          "Mensagem enviada com sucesso! Obrigada " + nome + ".",
+          "sucesso",
+        );
+        document.getElementById("form-contacto").reset();
+      }
+      function mostrarFeedback(texto, tipo) {
+        var div = document.getElementById("msg-feedback");
+        div.textContent = texto;
+        div.className = "feedback " + tipo;
+      }
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.classList.toggle("aberto");
+      }
+    </script>
+  </body>
+</html>

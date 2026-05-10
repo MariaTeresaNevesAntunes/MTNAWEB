@@ -1,0 +1,529 @@
+/* =============================
+   ESTILOS GERAIS
+   ============================= */
+
+/* =============================
+   ESTILOS GERAIS
+   ============================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: linear-gradient(135deg, #e0e6df, #253429, #223420);
+  background-attachment: fixed;
+  color: #d9ddda;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fundo com ilustração — aplicado APENAS à página inicial */
+body.pagina-inicio {
+  background-color: #2d342c;
+  background :url("MTNAimagens/bloglog.jpg") no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 130px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* =============================
+   HEADER
+   ============================= */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0f3d2e;
+  padding: 20px 0;
+  z-index: 100;
+  border-bottom: 4px solid #020b07;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* =============================
+   NAVEGAÇÃO
+   ============================= */
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: #729b52;
+}
+
+/ Botão hambúrguer — escondido no desktop / .btn-menu {
+  display: none;
+  background: none;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 1.5rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+/* =============================
+   TÍTULOS
+   ============================= */
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 30px 0;
+  color: #e9ebe9;
+}
+
+h2 {
+  text-align: center;
+  color: #e9ebe9;
+  margin: 30px 0 20px 0;
+}
+
+/* =============================
+   BLOG
+   ============================= */
+
+#lista-posts {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post {
+  background: linear-gradient(135deg, #249b51, #0a3117, #49d118);
+  background-image: url("shared/MTNAimagens/bloglog.jpg");
+  padding: 20px;
+  border-radius: 15px;
+  border-left: 6px solid #20021e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+
+.post:hover {
+  transform: translateX(5px);
+}
+
+.post h2 {
+  margin: 0 0 10px;
+  color: #e9ece9;
+  text-align: left;
+}
+
+.post p strong {
+  color: #c8f0c0;
+}
+
+/ Filtros do blog / #filtros {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#filtros button {
+  background: #020b07;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+#filtros button:hover {
+  background: #8adf7d;
+  transform: translateY(-2px);
+}
+
+/ Data do post / .post-data {
+  font-size: 0.85rem;
+  color: #a8d8a8;
+  margin-top: 8px;
+}
+
+/* =============================
+   GALERIA
+   ============================= */
+
+.galeria-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.galeria-container img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.galeria-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* =============================
+   SOBRE MIM
+   ============================= */
+
+.sobre-header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.sobre-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.sobre-conteudo {
+  flex: 1;
+}
+
+.sobre-conteudo h2,
+.sobre-conteudo h3 {
+  color: #e4e6e6;
+  text-align: left;
+}
+
+.sobre-conteudo ul li {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* =============================
+   CONTACTOS
+   ============================= */
+
+.contactos {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.contactos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contactos ul li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* =============================
+   FORMULÁRIO DE CONTACTO
+   ============================= */
+
+.formulario-contacto {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.campo {
+  margin-bottom: 15px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #e9ebe9;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #0f3d2e;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #1a4a35;
+  color: #ffffff;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: #729b52;
+  outline: none;
+}
+
+.erro {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 3px;
+  display: block;
+}
+
+.btn-enviar {
+  background: #0f3d2e;
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-enviar:hover {
+  background: #729b52;
+}
+
+/* =============================
+   FEEDBACK
+   ============================= */
+
+.feedback {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.feedback.sucesso {
+  background: #1a5c2a;
+  color: #8adf7d;
+  border: 2px solid #8adf7d;
+}
+
+.feedback.erro {
+  background: #5c1a1a;
+  color: #ff6b6b;
+  border: 2px solid #ff6b6b;
+}
+
+.feedback.escondido {
+  display: none;
+}
+
+/* =============================
+   ESTADO VAZIO
+   ============================= */
+
+.estado-vazio {
+  text-align: center;
+  color: #a0a0a0;
+  font-style: italic;
+  padding: 30px;
+  font-size: 1.1rem;
+}
+
+/* =============================
+   FOOTER
+   ============================= */
+
+footer {
+  display: flex;
+  justify-content: center;
+  background: #0f3d2e;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  border-top: 5px solid #020b07;
+  width: 100%;
+}
+
+/* =============================
+   RESPONSIVO — TABLET
+   ============================= */
+
+@media (max-width: 768px) {
+  header {
+    padding: 12px 0;
+  }
+
+  nav a {
+    font-size: 0.95rem;
+    padding: 8px 10px;
+  }
+
+  main {
+    padding-top: 100px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 20px 0;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .sobre-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .galeria-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 10px;
+  }
+
+  #filtros {
+    justify-content: center;
+  }
+
+  footer {
+    font-size: 14px;
+    padding: 15px 10px;
+  }
+}
+
+/* =============================
+   RESPONSIVO — TELEMÓVEL
+   ============================= */
+
+@media (max-width: 600px) {
+  / Mostrar o botão hambúrguer / .btn-menu {
+    display: block;
+  }
+
+  / Esconder o menu por defeito / nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 10px 0;
+  }
+
+  / Quando o menu tem a classe "aberto",
+  aparece / nav.aberto {
+    display: flex;
+  }
+
+  nav a {
+    font-size: 1rem;
+    padding: 12px 20px;
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  nav a:last-child {
+    border-bottom: none;
+  }
+
+  header {
+    padding: 10px 0;
+  }
+
+  main {
+    padding-top: 75px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    margin: 15px 10px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 15px 0 10px 0;
+  }
+
+  .post {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  #filtros {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #filtros button {
+    width: 80%;
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .galeria-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .galeria-container img {
+    height: 150px;
+  }
+
+  .sobre-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .contactos {
+    padding: 10px;
+  }
+
+  footer {
+    font-size: 13px;
+    padding: 12px 8px;
+  }
+}

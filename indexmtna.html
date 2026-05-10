@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogue MTNA</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <button class="btn-menu" onclick="toggleMenu()">☰ Menu</button>
+      <nav id="menu">
+        <a href="indexmtna.html">Início</a>
+        <a href="blogmtna.html">Blogue</a>
+        <a href="galmtna.html">Galeria</a>
+        <a href="sobrmtna.html">Sobre Mim</a>
+        <a href="contmtna.html">Contactos</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Blog MTNA</h1>
+      <h2>Bem-vindos ao Blog</h2>
+      <p>Este é o meu Blogue onde partilho as minhas experiências e conhecimentos.</p>
+    </main>
+    <footer>
+      <p>&copy; 2026 MTNA Blogue — Criado por Maria Teresa para partilhar ideias, experiências e inspiração.</p>
+    </footer>
+    <script>
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.classList.toggle("aberto");
+      }
+    </script>
+  </body>
+</html>

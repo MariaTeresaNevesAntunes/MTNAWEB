@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Mim</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="sobre-header">
+      <button class="btn-menu" onclick="toggleMenu()">☰ Menu</button>
+      <nav id="menu">
+        <a href="indexmtna.html">Início</a>
+        <a href="blogmtna.html">Blogue</a>
+        <a href="galmtna.html">Galeria</a>
+        <a href="sobrmtna.html">Sobre Mim</a>
+        <a href="contmtna.html">Contactos</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Sobre Mim</h1>
+      <section class="sobre-container">
+        <div style="text-align: center; margin-top: 20px">
+          <img
+            src="MTNAimagens/IMG_20220626_131016.jpg"
+            alt="Foto de Maria"
+            style="
+              width: 220px;
+              height: auto;
+              border-radius: 50%;
+              border: 4px solid #801f6f;
+            "
+          />
+        </div>
+        <div class="sobre-conteudo">
+          <h2>Olá! Eu sou a Maria Teresa</h2>
+          <p>
+            Bem-vindos ao meu portfólio profissional. Sou apaixonada por
+            criatividade, tecnologia e aprendizagem contínua. Aqui vais
+            encontrar os meus projetos, experiências e o meu percurso.
+          </p>
+          <h3>Experiência Profissional</h3>
+          <ul>
+            <li>
+              <strong>Professora de Matemática</strong> — Lecionei matemática
+              para alunos do ensino médio, ajudando-os a desenvolver suas
+              habilidades e alcançar seus objetivos académicos.
+            </li>
+            <li>
+              <strong>Trabalho de Escritório</strong> — Trabalhei em um
+              escritório, realizando tarefas administrativas.
+            </li>
+            <li>
+              <strong>Ilustradora</strong> — Criação de ilustrações digitais e
+              tradicionais.
+            </li>
+            <li>
+              <strong>Projetos criativos e digitais</strong> — Design gráfico,
+              desenvolvimento web e criação de conteúdo digital.
+            </li>
+          </ul>
+          <h3>O que estou a estudar</h3>
+          <p>Desenvolvimento Web — HTML, CSS, JavaScript (IEFP)</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2026 MTNA Blogue — Portfólio de Maria Teresa.</p>
+    </footer>
+    <script>
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.classList.toggle("aberto");
+      }
+    </script>
+  </body>
+</html>
