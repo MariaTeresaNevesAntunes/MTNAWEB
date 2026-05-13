@@ -1,135 +1,203 @@
-/* =============================
-   ESTILOS GERAIS
-   ============================= */
+/* ========================================================
+   MTNA — folha de estilos
+   ======================================================== */
 
-/* =============================
-   ESTILOS GERAIS
-   ============================= */
-
-* {
-  box-sizing: border-box;
+/* 1. Tokens da paleta MTNA */
+.fundo-ilustracao {
+  z-index: 0;
 }
 
-html,
-body {
-  height: 100%;
+:root {
+  --mtna-bg: #2d342c;
+  --mtna-surface: #0f3d2e;
+  --mtna-border: #020b07;
+  --mtna-text: #d9ddda;
+  --mtna-text-strong: #e9ebe9;
+  --mtna-accent: #729b52;
+}
+
+/* 2. Reset / base */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html,
 body {
-  display: flex;
-  flex-direction: column;
   min-height: 100%;
-  background: linear-gradient(135deg, #e0e6df, #253429, #223420);
+}
+
+body {
+  background: linear-gradient(135deg, #249b51, #0a3117, #49d118);
   background-attachment: fixed;
-  color: #d9ddda;
+  color: var(--mtna-text);
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
-/* Fundo com ilustração — aplicado APENAS à página inicial */
-body.pagina-inicio {
-  background-color: #2d342c;
-  background :url("MTNAimagens/bloglog.jpg") no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
+/* 3. Layout do site */
+.site-mtna {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: transparent;
+  color: var(--mtna-text);
 }
 
-main {
+.site-mtna header,
+.site-mtna main,
+.site-mtna footer {
+  position: relative;
+  z-index: 1;
+}
+
+.site-mtna header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  border-bottom: 4px solid var(--mtna-border);
+  background: var(--mtna-surface);
+  padding: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.site-mtna nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.site-mtna nav a {
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 10px 16px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.site-mtna nav a:hover,
+.site-mtna nav a[aria-current="page"] {
+  background: var(--mtna-accent);
+}
+
+.site-mtna main {
   flex: 1;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 130px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 175px 15px 40px;
 }
 
-/* =============================
-   HEADER
-   ============================= */
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #0f3d2e;
-  padding: 20px 0;
-  z-index: 100;
-  border-bottom: 4px solid #020b07;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* =============================
-   NAVEGAÇÃO
-   ============================= */
-
-nav {
+.site-mtna footer {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-nav a {
-  text-decoration: none;
-  font-size: 1.1rem;
+  width: 100%;
+  border-top: 5px solid var(--mtna-border);
+  background: var(--mtna-surface);
   color: #ffffff;
-  font-weight: bold;
-  padding: 10px 16px;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
-
-nav a:hover {
-  background: #729b52;
-}
-
-/ Botão hambúrguer — escondido no desktop / .btn-menu {
-  display: none;
-  background: none;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-  font-size: 1.5rem;
-  padding: 5px 12px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 0 auto;
-}
-
-/* =============================
-   TÍTULOS
-   ============================= */
-
-h1 {
+  font-size: 16px;
+  padding: 20px;
   text-align: center;
+}
+
+/* 4. Tipografia */
+.site-mtna h1 {
+  color: var(--mtna-text-strong);
   font-size: 3rem;
   margin: 30px 0;
-  color: #e9ebe9;
-}
-
-h2 {
   text-align: center;
-  color: #e9ebe9;
-  margin: 30px 0 20px 0;
 }
 
-/* =============================
-   BLOG
-   ============================= */
+.site-mtna h2 {
+  color: var(--mtna-text-strong);
+  margin: 30px 0 20px;
+  text-align: center;
+}
 
-#lista-posts {
-  margin-top: 20px;
+/* 5. Página inicial — hero + ilustração de fundo */
+.site-mtna.pagina-inicio,
+body.pagina-inicio .site-mtna {
+  background: var(--mtna-bg);
+}
+
+.fundo-ilustracao {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url("MTNAimagens/Bloglog.jpg") center center / contain no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.hero-mtna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  margin-top: -48px;
+  text-align: center;
+}
+
+.tagline-mtna {
+  color: var(--mtna-text-strong);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  -webkit-text-stroke: 1px var(--mtna-text-strong);
+}
+
+/* 6. Blogue */
+.blog-intro {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.blog-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.blog-filtros button {
+  background: var(--mtna-border);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+.blog-filtros button:hover,
+.blog-filtros button[aria-pressed="true"] {
+  background: var(--mtna-accent);
+  transform: translateY(-2px);
+}
+
+.blog-lista {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .post {
   background: linear-gradient(135deg, #249b51, #0a3117, #49d118);
-  background-image: url("shared/MTNAimagens/bloglog.jpg");
   padding: 20px;
   border-radius: 15px;
   border-left: 6px solid #20021e;
@@ -141,50 +209,28 @@ h2 {
   transform: translateX(5px);
 }
 
-.post h2 {
+.post h3 {
   margin: 0 0 10px;
-  color: #e9ece9;
-  text-align: left;
+  color: var(--mtna-text-strong);
 }
 
 .post p strong {
   color: #c8f0c0;
 }
 
-/ Filtros do blog / #filtros {
-  margin-top: 20px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-#filtros button {
-  background: #020b07;
-  color: white;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: 0.25s;
-}
-
-#filtros button:hover {
-  background: #8adf7d;
-  transform: translateY(-2px);
-}
-
-/ Data do post / .post-data {
+.post-data {
   font-size: 0.85rem;
   color: #a8d8a8;
   margin-top: 8px;
 }
 
-/* =============================
-   GALERIA
-   ============================= */
+.estado-vazio {
+  text-align: center;
+  color: var(--mtna-text);
+  font-style: italic;
+}
 
+/* 7. Galeria */
 .galeria-container {
   max-width: 1000px;
   margin: 30px auto;
@@ -200,330 +246,383 @@ h2 {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
 }
 
-.galeria-container img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-/* =============================
-   SOBRE MIM
-   ============================= */
-
-.sobre-header {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
+/* 8. Sobre Mim */
 .sobre-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  display: grid;
+  gap: 30px;
 }
 
-.sobre-conteudo {
-  flex: 1;
+.sobre-foto {
+  display: flex;
+  justify-content: center;
+}
+
+.sobre-foto img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--mtna-accent);
 }
 
 .sobre-conteudo h2,
 .sobre-conteudo h3 {
-  color: #e4e6e6;
   text-align: left;
 }
 
-.sobre-conteudo ul li {
-  margin-bottom: 15px;
-  line-height: 1.6;
+.sobre-conteudo ul {
+  line-height: 1.7;
+  padding-left: 20px;
 }
 
-/* =============================
-   CONTACTOS
-   ============================= */
-
-.contactos {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+/* 9. Contactos */
+.contactos,
+.formulario-contacto {
+  max-width: 640px;
+  margin: 0 auto 30px;
 }
 
 .contactos ul {
   list-style: none;
   padding: 0;
+  text-align: center;
+  line-height: 1.8;
 }
 
-.contactos ul li {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-}
-
-/* =============================
-   FORMULÁRIO DE CONTACTO
-   ============================= */
-
-.formulario-contacto {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
+.formulario-contacto form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .campo {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .campo label {
-  display: block;
-  margin-bottom: 5px;
   font-weight: bold;
-  color: #e9ebe9;
+  color: var(--mtna-text-strong);
 }
 
 .campo input,
 .campo textarea {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #0f3d2e;
+  padding: 10px 12px;
   border-radius: 8px;
+  border: 1px solid var(--mtna-border);
+  background: #1a2620;
+  color: #fff;
+  font-family: inherit;
   font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #1a4a35;
-  color: #ffffff;
 }
 
-.campo input:focus,
-.campo textarea:focus {
-  border-color: #729b52;
-  outline: none;
-}
-
-.erro {
-  color: #ff6b6b;
+.campo .erro {
+  color: #ff8a8a;
   font-size: 0.85rem;
-  margin-top: 3px;
-  display: block;
+  min-height: 1em;
 }
 
 .btn-enviar {
-  background: #0f3d2e;
-  color: #ffffff;
+  background: var(--mtna-accent);
+  color: #fff;
   border: none;
-  padding: 12px 30px;
+  padding: 12px 24px;
   border-radius: 8px;
   font-size: 1rem;
-  cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s;
+  cursor: pointer;
+  transition: background 0.25s;
 }
 
 .btn-enviar:hover {
-  background: #729b52;
+  background: #8adf7d;
 }
-
-/* =============================
-   FEEDBACK
-   ============================= */
 
 .feedback {
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 15px;
-  font-weight: bold;
   text-align: center;
 }
 
 .feedback.sucesso {
-  background: #1a5c2a;
-  color: #8adf7d;
-  border: 2px solid #8adf7d;
+  background: #1f5d3a;
+  color: #c8f0c0;
 }
 
 .feedback.erro {
-  background: #5c1a1a;
-  color: #ff6b6b;
-  border: 2px solid #ff6b6b;
+  background: #5d1f1f;
+  color: #ffd0d0;
 }
 
-.feedback.escondido {
+/* 10. Botão hamburger (escondido em desktop) */
+.botao-menu {
   display: none;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--mtna-accent);
+  border-radius: 8px;
+  font-size: 1.4rem;
+
+  cursor: pointer;
 }
 
-/* =============================
-   ESTADO VAZIO
-   ============================= */
+/* 11. Responsivo — mobile */
+@media (max-width: 700px) {
+  .botao-menu {
+    display: block;
+  }
 
-.estado-vazio {
+  .site-mtna nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .site-mtna nav.aberto {
+    display: flex;
+  }
+
+  .site-mtna nav a {
+    text-align: center;
+    width: 100%;
+  }
+
+  .site-mtna main {
+    padding-top: 110px;
+  }
+
+  .galeria-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+h1 {
+  margin-top: 140px;
   text-align: center;
-  color: #a0a0a0;
-  font-style: italic;
-  padding: 30px;
-  font-size: 1.1rem;
+}
+/* ===== HEADER FIXO NO TOPO ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0f3d2e;
+  padding: 20px 0;
+  z-index: 1000;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
-/* =============================
-   FOOTER
-   ============================= */
+nav a {
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+  display: inline-block;
+}
+
+/* Espaço para o header não tapar o conteúdo */
+body {
+  margin: 0;
+  padding-top: 80px;
+}
+
+/* ===== FOOTER COLADO AO FUNDO ===== */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
 
 footer {
-  display: flex;
-  justify-content: center;
   background: #0f3d2e;
   color: #ffffff;
   text-align: center;
   padding: 20px;
   font-size: 16px;
-  border-top: 5px solid #020b07;
+  border-top: 1px solid #1b6b4a;
   width: 100%;
 }
+/* ===== TEXTO DA GALERIA ===== */
+.galeria-titulo,
+.galeria-texto {
+  text-align: center;
+}
+.galeria-container,
+main {
+  text-align: center;
+}
+/* ===== CONTACTOS ===== */
+.contactos-titulo,
+.contactos-info,
+.contactos-form {
+  text-align: center;
+}
+main {
+  text-align: center;
+}
+/* Centrar tudo na página Contactos */
+.contactos-container,
+.contactos-container * {
+  text-align: center;
+}
+.contactos-titulo {
+  text-align: center;
+}
+/* ===== GALERIA RESPONSIVA ===== */
+.galeria-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-/* =============================
-   RESPONSIVO — TABLET
-   ============================= */
-
+.galeria-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+/* ===== MENU RESPONSIVO ===== */
 @media (max-width: 768px) {
-  header {
-    padding: 12px 0;
-  }
-
   nav a {
-    font-size: 0.95rem;
-    padding: 8px 10px;
+    display: block;
+    margin: 10px 0;
+    font-size: 20px;
   }
+}
+/* ===== CONTACTOS RESPONSIVO ===== */
+.contactos {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  main {
-    padding-top: 100px;
-  }
+.contactos input,
+.contactos textarea {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+  display: block;
+}
+/* ===== AJUSTES GERAIS ===== */
+main {
+  padding: 20px;
+}
 
-  h1 {
-    font-size: 2.2rem;
-    margin: 20px 0;
-  }
-
-  h2 {
+@media (max-width: 480px) {
+  h1,
+  h2,
+  h3 {
     font-size: 1.4rem;
   }
 
-  .sobre-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-    padding: 10px;
-  }
-
-  .galeria-container {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    padding: 10px;
-  }
-
-  #filtros {
-    justify-content: center;
-  }
-
-  footer {
-    font-size: 14px;
-    padding: 15px 10px;
+  p {
+    font-size: 1rem;
   }
 }
+h1 {
+  margin-top: 0;
+}
 
-/* =============================
-   RESPONSIVO — TELEMÓVEL
-   ============================= */
+body {
+  padding-top: 80px;
+}
+main {
+  margin-top: 0;
+}
+/* ===== HEADER COM SOMBRA FORTE ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0f3d2e;
+  padding: 20px 0;
+  z-index: 1000;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  text-align: center;
 
-@media (max-width: 600px) {
-  / Mostrar o botão hambúrguer / .btn-menu {
-    display: block;
-  }
+}
 
-  / Esconder o menu por defeito / nav {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    padding: 10px 0;
-  }
+nav a {
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
 
-  / Quando o menu tem a classe "aberto",
-  aparece / nav.aberto {
-    display: flex;
-  }
+}
 
-  nav a {
-    font-size: 1rem;
-    padding: 12px 20px;
-    width: 100%;
-    text-align: center;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  }
+/* ===== HERO FULLSCREEN ===== */
+body.pagina-inicio {
+  padding-top: 0 !important;
+}
 
-  nav a:last-child {
-    border-bottom: none;
-  }
+body.pagina-inicio main {
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #031b12;
+}
 
-  header {
-    padding: 10px 0;
-  }
+.hero-mtna {
+  height: 100vh; /* ocupa a página inteira */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 81px;
+  text-align: center;
+}
 
-  main {
-    padding-top: 75px;
-  }
+.logo-mtna {
+  width: 70vw;
+  max-width: 400px;
+  height: auto;}
 
-  h1 {
-    font-size: 1.7rem;
-    margin: 15px 10px;
-  }
+/* ===== FUNDO ILUSTRADO ===== */
+.fundo-ilustracao {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url("MTNAimagens/Bloglog.jpg") center center /cover no-repeat;
+  opacity: o.0001;
+  pointer-events: none;
+}
+header nav {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;     /* alinha verticalmente */
+  gap: 25px;               /* espaço entre os links */
+}
+.frase-base {
+  .frase-base {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  padding: 20px 0 10px 0;
 
-  h2 {
-    font-size: 1.2rem;
-    margin: 15px 0 10px 0;
-  }
+  /* para ficar visível sobre qualquer fundo */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
 
-  .post {
-    padding: 15px;
-    border-radius: 10px;
-  }
-
-  #filtros {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  #filtros button {
-    width: 80%;
-    font-size: 14px;
-    padding: 10px 16px;
-  }
-
-  .galeria-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 5px;
-  }
-
-  .galeria-container img {
-    height: 150px;
-  }
-
-  .sobre-container {
-    flex-direction: column;
-    text-align: center;
-    padding: 5px;
-  }
-
-  .contactos {
-    padding: 10px;
-  }
-
-  footer {
-    font-size: 13px;
-    padding: 12px 8px;
-  }
 }

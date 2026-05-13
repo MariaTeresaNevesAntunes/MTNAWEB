@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galeria</title>
+    <title>Galeria — MTNA</title>
+    <meta
+      name="description"
+      content="Galeria de ilustrações MTNA — uma seleção de imagens criadas por Maria Teresa."
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <button class="btn-menu" onclick="toggleMenu()">☰ Menu</button>
-      <nav id="menu">
+      <nav>
         <a href="indexmtna.html">Início</a>
         <a href="blogmtna.html">Blogue</a>
         <a href="galmtna.html">Galeria</a>
@@ -17,63 +20,83 @@
         <a href="contmtna.html">Contactos</a>
       </nav>
     </header>
-    <h1>Galeria</h1>
+
     <main>
+      <h1>Galeria</h1>
       <h2>As Minhas Imagens</h2>
-      <p>
+      <p style="text-align: center; max-width: 720px; margin: 0 auto">
         Pode ver aqui algumas das minhas ilustrações. Alguns exemplos estão
         disponíveis em
         <a
           href="https://www.istockphoto.com/pt/portfolio/20072024mtnaD?sort=purerecency&assettype=image"
           target="_blank"
-          >Getting Images</a
+          rel="noreferrer"
+          style="color: #e9ebe9; text-decoration: underline"
+        >
+          Getty Images </a
         >.
       </p>
+
       <div class="galeria-container">
-        <img src="MTNAimagens/CIRCULOS.jpg" alt="Círculos" />
-        <img src="MTNAimagens/fimdeano.jpg" alt="Fim de Ano" />
+        <img
+          src="MTNAimagens/freepik-circulos-20241017124024uxMp.jpeg"
+          alt="Círculos"
+          loading="lazy"
+        />
+        <img src="MTNAimagens/fimdeano.jpg" alt="Fim de Ano" loading="lazy" />
         <img
           src="MTNAimagens/freepik-crucesestrelas-20240927003633VoOa.jpeg"
           alt="Cruzes e Estrelas"
+          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-floresdocampo-20241017144810epLD.jpeg"
           alt="Flores do Campo"
+          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-folhas-20241001164255nxfe.jpeg"
           alt="Folhas"
+          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-redsquar-20240918212525Dzx8.jpeg"
           alt="Quadrado Vermelho"
+          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-rombos-20240917165046aaV0.jpeg"
           alt="Rombos"
+          loading="lazy"
         />
         <img
-          src="MTNAimagens/freepik-rombos-20240917165046aaV0.jpeg"
-          alt="Rombos"
+          src="MTNAimagens/Coisasdebruxa.jpg"
+          alt="Coisas de Bruxa"
+          loading="lazy"
         />
         <img
-          src="MTNAimagens/freepik-round-20241123132021vk6s.jpeg"
+          src="MTNAimagens/freepik-round-20241123132021vK6s.jpeg"
           alt="Círculo Redondo"
+          loading="lazy"
         />
-        <img src="MTNAimagens/Montanha.jpg" alt="Montanha" />
+        <img src="MTNAimagens/Montanha.jpg" alt="Montanha" loading="lazy" />
+        <img
+          src="MTNAimagens/freepik-meiadenatal-202411082119453IDX.jpeg"
+          alt="Meia de Natal"
+          loading="lazy"
+        />
+        <img
+          src="MTNAimagens/freepik-estrelabelem-20241114174051UBYR.jpeg"
+          alt="Estrela de Belém"
+          loading="lazy"
+        />
       </div>
     </main>
+
     <footer>
-      <p>
-        &copy; 2026 MTNA Blogue — Criado por Maria Teresa para partilhar ideias,
-        experiências e inspiração.
-      </p>
+      <p>&copy; 2026 MTNA Blogue — Ilustrações de Maria Teresa.</p>
     </footer>
-    <script>
-      function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("aberto");
-      }
-    </script>
+
+    <script src="scriptmtna.js"></script>
   </body>
 </html>
