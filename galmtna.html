@@ -6,97 +6,194 @@
     <title>Galeria — MTNA</title>
     <meta
       name="description"
-      content="Galeria de ilustrações MTNA — uma seleção de imagens criadas por Maria Teresa."
+      content="Galeria de ilustrações de Maria Teresa."
     />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        background: linear-gradient(135deg, #0f3d2e, #1a5a3e, #0a2a1f);
+        background-attachment: fixed;
+        color: #d9ddda;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .mtna-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #0f3d2e;
+        padding: 55px 0;
+        z-index: 2;
+        border-bottom: 4px solid #020b07;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .mtna-nav {
+        display: flex;
+        justify-content: center;
+        gap: 0.5px;
+        flex-wrap: wrap;
+      }
+      .mtna-nav a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px 16px;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+      .mtna-nav a:hover,
+      .mtna-nav a.active {
+        background: #729b52;
+        color: #fff;
+      }
+      .mtna-main {
+        flex: 1;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 120px;
+      }
+      .mtna-main h1 {
+        text-align: center;
+        font-size: 3.5rem;
+        margin: 30px 0;
+        color: #e9ebe9;
+      }
+      .mtna-main h2 {
+        text-align: center;
+        color: #e9ebe9;
+        margin: 30px 0 20px;
+      }
+      .galeria-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .galeria-intro a {
+        color: #8adf7d;
+      }
+      .galeria-container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 10px 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .galeria-container img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .galeria-container img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      }
+      .mtna-footer {
+        display: flex;
+        justify-content: center;
+        background: #0f3d2e;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 16px;
+        border-top: 5px solid #020b07;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="indexmtna.html">Início</a>
-        <a href="blogmtna.html">Blogue</a>
-        <a href="galmtna.html">Galeria</a>
-        <a href="sobrmtna.html">Sobre Mim</a>
-        <a href="contmtna.html">Contactos</a>
+    <header class="mtna-header">
+      <nav class="mtna-nav">
+        <a href="index.html">Início</a>
+        <a href="blog.html">Blogue</a>
+        <a href="galeria.html" class="active">Galeria</a>
+        <a href="sobre.html">Sobre Mim</a>
+        <a href="contactos.html">Contactos</a>
       </nav>
     </header>
-
-    <main>
+    <main class="mtna-main">
       <h1>Galeria</h1>
       <h2>As Minhas Imagens</h2>
-      <p style="text-align: center; max-width: 720px; margin: 0 auto">
-        Pode ver aqui algumas das minhas ilustrações. Alguns exemplos estão
+      <p class="galeria-intro">
+        Pode ver aqui algumas das minhas ilustrações. Mais exemplos estão
         disponíveis em
         <a
           href="https://www.istockphoto.com/pt/portfolio/20072024mtnaD?sort=purerecency&assettype=image"
           target="_blank"
-          rel="noreferrer"
-          style="color: #e9ebe9; text-decoration: underline"
-        >
-          Getty Images </a
+          rel="noopener noreferrer"
+          >Getty Images</a
         >.
       </p>
-
       <div class="galeria-container">
-        <img
-          src="MTNAimagens/freepik-circulos-20241017124024uxMp.jpeg"
-          alt="Círculos"
-          loading="lazy"
-        />
-        <img src="MTNAimagens/fimdeano.jpg" alt="Fim de Ano" loading="lazy" />
+        <img src="MTNAimagens/CIRCULOS.jpg" alt="Círculos" />
+        <img src="MTNAimagens/Montanha.jpg" alt="Montanha" />
         <img
           src="MTNAimagens/freepik-crucesestrelas-20240927003633VoOa.jpeg"
           alt="Cruzes e Estrelas"
-          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-floresdocampo-20241017144810epLD.jpeg"
           alt="Flores do Campo"
-          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-folhas-20241001164255nxfe.jpeg"
           alt="Folhas"
-          loading="lazy"
-        />
-        <img
-          src="MTNAimagens/freepik-redsquar-20240918212525Dzx8.jpeg"
-          alt="Quadrado Vermelho"
-          loading="lazy"
         />
         <img
           src="MTNAimagens/freepik-rombos-20240917165046aaV0.jpeg"
           alt="Rombos"
-          loading="lazy"
         />
         <img
-          src="MTNAimagens/Coisasdebruxa.jpg"
-          alt="Coisas de Bruxa"
-          loading="lazy"
-        />
-        <img
-          src="MTNAimagens/freepik-round-20241123132021vK6s.jpeg"
+          src="MTNAimagens/freepik-round-20241123132021vk6s.jpeg"
           alt="Círculo Redondo"
-          loading="lazy"
         />
-        <img src="MTNAimagens/Montanha.jpg" alt="Montanha" loading="lazy" />
-        <img
-          src="MTNAimagens/freepik-meiadenatal-202411082119453IDX.jpeg"
-          alt="Meia de Natal"
-          loading="lazy"
-        />
+        <img src="MTNAimagens/Coisasdebruxa.jpg" alt="Coisas de Bruxa" />
+        <img src="MTNAimageni/coroadvento.jpg" alt="Coroa do Advento" />
         <img
           src="MTNAimagens/freepik-estrelabelem-20241114174051UBYR.jpeg"
           alt="Estrela de Belém"
-          loading="lazy"
+        />
+        <img
+          src="MTNAimagens/freepik-meiadenatal-202411082119453IDX.jpeg"
+          alt="Meias de Natal"
+        />
+        <img
+          src="MTNAimagens/freepik-velanatal-202411152215065zBq.jpeg"
+          alt="Vela de Natal"
+        />
+        <img src="MTNAimagens/fimdeano.jpg" alt="Fim de Ano" />
+        <img
+          src="MTNAimagens/freepik-fantasmabruxa1.jpeg"
+          alt="Fantasmas e Bruxas"
+        />
+        <img
+          src="MTNAimagens/freepik-redsquar.jpeg"
+          alt="Quadrados Vermelhos"
         />
       </div>
     </main>
-
-    <footer>
-      <p>&copy; 2026 MTNA Blogue — Ilustrações de Maria Teresa.</p>
+    <footer class="mtna-footer">
+      <p>
+        &copy; 2026 MTNA Blogue — Criado por Maria Teresa para partilhar ideias,
+        experiências e inspiração.
+      </p>
     </footer>
-
-    <script src="scriptmtna.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

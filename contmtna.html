@@ -1,135 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contactos</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a href="indexmtna.html">Início</a>
-        <a href="blogmtna.html">Blogue</a>
-        <a href="galmtna.html">Galeria</a>
-        <a href="sobrmtna.html">Sobre Mim</a>
-        <a href="contmtna.html">Contactos</a>
-      </nav>
-    </header>
-    <main>
-      <h1>Contactos</h1>
-      <section class="contactos">
-        <h2>Informações de Contacto</h2>
-        <h2 class="contactos-titulo">Contactos</h2>
-        <ul>
-          <li><strong>Telemóvel:</strong> 963319416</li>
-          <li><strong>Email:</strong> mtna20100922@gmail.com</li>
-        </ul>
-      </section>
-      <section class="formulario-contacto">
-        <h2>Enviar Mensagem</h2>
-        <div id="msg-feedback" class="feedback escondido"></div>
-        <form id="form-contacto" onsubmit="enviarFormulario(event)">
-          <div class="campo">
-            <label for="nome">Nome *</label>
-            <input type="text" id="nome" name="nome" placeholder="O seu nome" />
-            <span class="erro" id="erro-nome"></span>
-          </div>
-          <div class="campo">
-            <label for="email">Email *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="exemplo@email.com"
-            />
-            <span class="erro" id="erro-email"></span>
-          </div>
-          <div class="campo">
-            <label for="assunto">Assunto</label>
-            <input
-              type="text"
-              id="assunto"
-              name="assunto"
-              placeholder="Assunto da mensagem"
-            />
-          </div>
-          <div class="campo">
-            <label for="mensagem">Mensagem *</label>
-            <textarea
-              id="mensagem"
-              name="mensagem"
-              rows="5"
-              placeholder="Escreva a sua mensagem..."
-            ></textarea>
-            <span class="erro" id="erro-mensagem"></span>
-          </div>
-          <button type="submit" class="btn-enviar">Enviar</button>
-        </form>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2026 MTNA Blogue — Página de contactos.</p>
-    </footer>
-    <script>
-      var mensagens = [];
-      function enviarFormulario(event) {
-        event.preventDefault();
-        document.getElementById("erro-nome").textContent = "";
-        document.getElementById("erro-email").textContent = "";
-        document.getElementById("erro-mensagem").textContent = "";
-        var nome = document.getElementById("nome").value.trim();
-        var email = document.getElementById("email").value.trim();
-        var assunto = document.getElementById("assunto").value.trim();
-        var mensagem = document.getElementById("mensagem").value.trim();
-        var temErros = false;
-        if (nome === "") {
-          document.getElementById("erro-nome").textContent =
-            "O nome é obrigatório.";
-          temErros = true;
-        }
-        if (email === "") {
-          document.getElementById("erro-email").textContent =
-            "O email é obrigatório.";
-          temErros = true;
-        } else if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-          document.getElementById("erro-email").textContent =
-            "Introduza um email válido.";
-          temErros = true;
-        }
-        if (mensagem === "") {
-          document.getElementById("erro-mensagem").textContent =
-            "A mensagem é obrigatória.";
-          temErros = true;
-        }
-        if (temErros) {
-          mostrarFeedback("Por favor corrija os erros acima.", "erro");
-          return;
-        }
-        var novaMensagem = {
-          id: mensagens.length + 1,
-          nome: nome,
-          email: email,
-          assunto: assunto,
-          mensagem: mensagem,
-          createdAt: new Date().toLocaleString("pt-PT"),
-        };
-        mensagens.push(novaMensagem);
-        mostrarFeedback(
-          "Mensagem enviada com sucesso! Obrigada " + nome + ".",
-          "sucesso",
-        );
-        document.getElementById("form-contacto").reset();
-      }
-      function mostrarFeedback(texto, tipo) {
-        var div = document.getElementById("msg-feedback");
-        div.textContent = texto;
-        div.className = "feedback " + tipo;
-      }
-      function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("aberto");
-      }
-    </script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contactos — MTNA</title>
+<meta name="description" content="Entre em contacto com Maria Teresa." />
+<style>
+  html, body { height: 100%; margin: 0; padding: 0; }
+  body {
+    display: flex; flex-direction: column; min-height: 100%;
+    background: linear-gradient(135deg, #0f3d2e, #1a5a3e, #0a2a1f);
+    background-attachment: fixed; color: #d9ddda;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .mtna-header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: #0f3d2e; padding: 55px 0; z-index: 2;
+    border-bottom: 4px solid #020b07; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .mtna-nav { display: flex; justify-content: center; gap: 0.5px; flex-wrap: wrap; }
+  .mtna-nav a {
+    text-decoration: none; font-size: 1.2rem; color: #fff; font-weight: bold;
+    padding: 10px 16px; border-radius: 8px; transition: 0.3s;
+  }
+  .mtna-nav a:hover, .mtna-nav a.active { background: #729b52; color: #fff; }
+  .mtna-main { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding-top: 120px; }
+  .mtna-main h1 { text-align: center; font-size: 3.5rem; margin: 30px 0; color: #e9ebe9; }
+  .mtna-main h2 { text-align: center; color: #e9ebe9; margin: 30px 0 20px; }
+  .contactos { max-width: 700px; margin: 0 auto; padding: 20px; }
+  .contactos ul { list-style: none; padding: 0; }
+  .contactos a { color: #8adf7d; }
+  .formulario-contacto {
+    max-width: 600px; margin: 20px auto 60px; padding: 32px;
+    display: flex; flex-direction: column; gap: 16px;
+    background: rgba(15,61,46,0.92); border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,1); border: 2px solid #020b07;
+  }
+  .formulario-contacto label {
+    display: flex; flex-direction: column; gap: 6px;
+    font-weight: bold; color: #e9ebe9;
+  }
+  .formulario-contacto input, .formulario-contacto textarea {
+    padding: 12px; border-radius: 10px; border: 2px solid #729b52;
+    font-family: inherit; font-size: 1rem; background: #f0f2f0;
+    color: #111; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .formulario-contacto input:focus, .formulario-contacto textarea:focus {
+    border-color: #8adf7d; box-shadow: 0 0 0 3px rgba(138,223,125,0.3);
+  }
+  .formulario-contacto button {
+    background: #020b07; color: #fff; border: none; padding: 14px;
+    border-radius: 10px; font-size: 1.05rem; font-weight: bold;
+    cursor: pointer; transition: 0.3s; margin-top: 4px;
+  }
+  .formulario-contacto button:hover { background: #729b52; }
+  .mtna-footer {
+    display: flex; justify-content: center; background: #0f3d2e;
+    color: #fff; text-align: center; padding: 20px; font-size: 16px;
+    border-top: 5px solid #020b07; width: 100%;
+  }
+</style>
+</head>
+<body>
+  <header class="mtna-header">
+    <nav class="mtna-nav">
+      <a href="index.html">Início</a>
+      <a href="blog.html">Blogue</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="sobre.html">Sobre Mim</a>
+      <a href="contactos.html" class="active">Contactos</a>
+    </nav>
+  </header>
+  <main class="mtna-main">
+    <h1>Contactos</h1>
+    <p style="text-align:center">Entre em contacto comigo através dos meios abaixo ou pelo formulário.</p>
+    <section class="contactos">
+      <h2>Os meus contactos</h2>
+      <ul>
+        <li><strong>Telemóvel:</strong> 963 319 416</li>
+        <li><strong>Email:</strong> <a href="mailto:mtna20100922@gmail.com">mtna20100922@gmail.com</a></li>
+      </ul>
+    </section>
+    <form id="formulario-contacto" class="formulario-contacto">
+      <label>Nome <input type="text" name="nome" required /></label>
+      <label>Email <input type="email" name="email" required /></label>
+      <label>Mensagem <textarea name="mensagem" rows="5" required></textarea></label>
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+  <footer class="mtna-footer">
+    <p>&copy; 2026 MTNA Blogue — Criado por Maria Teresa para partilhar ideias, experiências e inspiração.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
 </html>

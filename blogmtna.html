@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog de Matemática</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
- <body>
-  <body>
-  <div class="site-mtna">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogue — MTNA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    <nav class="menu">
+      <a href="indexmtna.html">Início</a>
+      <a href="blogue.html" class="ativo">Blogue</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="sobre.html">Sobre Mim</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
 
-  <div class="site-mtna">
-
-    <header>
-      
-      <nav>
-        <a href="indexmtna.html">Início</a>
-        <a href="blogmtna.html">Blogue</a>
-        <a href="galmtna.html">Galeria</a>
-        <a href="sobrmtna.html">Sobre Mim</a>
-        <a href="contmtna.html">Contactos</a>
-      </nav>
-    </header>
-
+  <main class="conteudo">
     <h1>Explicações &amp; Tópicos de Matemática</h1>
-    <main>
-      <section class="blog-intro">
-        <p>Onde a precisão do cálculo encontra a elegância do design. Explore a nossa biblioteca de teoremas ilustrados e aplicações práticas do universo matemático.</p>
-      </section>
-      <section id="filtros" class="blog-filtros">
-        <button data-categoria="todos">📚 Todos</button>
-        <button data-categoria="geometria">📐 Geometria</button>
-        <button data-categoria="álgebra">f(x) Álgebra</button>
-      </section>
-      <section id="lista-posts" class="blog-lista"></section>
-    </main>
-    <footer>
-      <p>&copy; 2026 MTNA Blogue — Secção de Matemática.</p>
-    </footer>
-    <script src="scriptmtna.js"></script>
-    <script>
-      function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("aberto");
-      }
-    </script>
-  </body>
+    <p class="intro">Onde a precisão do cálculo encontra a elegância do design.</p>
+
+    <section class="blog-filtros">
+      <button class="ativo" data-filtro="todos">📚 Todos</button>
+      <button data-filtro="Geometria">📐 Geometria</button>
+      <button data-filtro="Álgebra">f(x) Álgebra</button>
+    </section>
+
+    <section class="blog-lista">
+      <article class="post" data-categoria="Geometria">
+        <h3>Teorema de Pitágoras</h3>
+        <p><strong>Categoria:</strong> Geometria</p>
+        <p>Relação entre os lados de um triângulo retângulo.</p>
+      </article>
+      <article class="post" data-categoria="Álgebra">
+        <h3>Funções Lineares</h3>
+        <p><strong>Categoria:</strong> Álgebra</p>
+        <p>Como interpretar gráficos e equações do 1.º grau.</p>
+      </article>
+      <article class="post" data-categoria="Geometria">
+        <h3>Ângulos Notáveis</h3>
+        <p><strong>Categoria:</strong> Geometria</p>
+        <p>Ângulos especiais e as suas aplicações.</p>
+      </article>
+      <article class="post" data-categoria="Álgebra">
+        <h3>Equações do 2.º Grau</h3>
+        <p><strong>Categoria:</strong> Álgebra</p>
+        <p>Resolução de equações quadráticas e parábolas.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="rodape"><p>© 2026 MTNA — Maria Teresa</p></footer>
+  <script src="scriptmtna.js"></script>
+</body>
 </html>

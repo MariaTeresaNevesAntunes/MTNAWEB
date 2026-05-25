@@ -3,37 +3,139 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre Mim</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Sobre Mim — MTNA</title>
+    <meta
+      name="description"
+      content="Sobre Maria Teresa: percurso e experiência."
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        background: linear-gradient(135deg, #0f3d2e, #1a5a3e, #0a2a1f);
+        background-attachment: fixed;
+        color: #d9ddda;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .mtna-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #0f3d2e;
+        padding: 55px 0;
+        z-index: 2;
+        border-bottom: 4px solid #020b07;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .mtna-nav {
+        display: flex;
+        justify-content: center;
+        gap: 0.5px;
+        flex-wrap: wrap;
+      }
+      .mtna-nav a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px 16px;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+      .mtna-nav a:hover,
+      .mtna-nav a.active {
+        background: #729b52;
+        color: #fff;
+      }
+      .mtna-main {
+        flex: 1;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 120px;
+      }
+      .mtna-main h1 {
+        text-align: center;
+        font-size: 3.5rem;
+        margin: 30px 0;
+        color: #e9ebe9;
+      }
+      .sobre-container {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .sobre-foto img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .sobre-texto {
+        flex: 1;
+      }
+      .sobre-texto h2,
+      .sobre-texto h3 {
+        color: #e4e6e6;
+      }
+      .sobre-texto ul li {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+      @media (max-width: 768px) {
+        .sobre-container {
+          flex-direction: column;
+          text-align: center;
+        }
+        .sobre-foto {
+          margin: 0 auto;
+        }
+      }
+      .mtna-footer {
+        display: flex;
+        justify-content: center;
+        background: #0f3d2e;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 16px;
+        border-top: 5px solid #020b07;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    <div class="site-mtna">
-    <header class="sobre-header">
-     
-      <nav>
-        <a href="indexmtna.html">Início</a>
-        <a href="blogmtna.html">Blogue</a>
-        <a href="galmtna.html">Galeria</a>
-        <a href="sobrmtna.html">Sobre Mim</a>
-        <a href="contmtna.html">Contactos</a>
+    <header class="mtna-header">
+      <nav class="mtna-nav">
+        <a href="index.html">Início</a>
+        <a href="blog.html">Blogue</a>
+        <a href="galeria.html">Galeria</a>
+        <a href="sobre.html" class="active">Sobre Mim</a>
+        <a href="contactos.html">Contactos</a>
       </nav>
     </header>
-    <main>
+    <main class="mtna-main">
       <h1>Sobre Mim</h1>
       <section class="sobre-container">
-        <div style="text-align: center; margin-top: 20px">
+        <div class="sobre-foto">
           <img
             src="MTNAimagens/IMG_20220626_131016.jpg"
-            alt="Foto de Maria"
-            style="
-              width: 220px;
-              height: auto;
-              border-radius: 50%;
-              border: 4px solid #801f6f;
-            "
+            alt="Foto de Maria Teresa"
           />
         </div>
-        <div class="sobre-conteudo">
+        <div class="sobre-texto">
           <h2>Olá! Eu sou a Maria Teresa</h2>
           <p>
             Bem-vindos ao meu portfólio profissional. Sou apaixonada por
@@ -44,12 +146,12 @@
           <ul>
             <li>
               <strong>Professora de Matemática</strong> — Lecionei matemática
-              para alunos do ensino médio, ajudando-os a desenvolver suas
-              habilidades e alcançar seus objetivos académicos.
+              para alunos do ensino médio, ajudando-os a desenvolver as suas
+              capacidades e a alcançar os seus objetivos académicos.
             </li>
             <li>
-              <strong>Trabalho de Escritório</strong> — Trabalhei em um
-              escritório, realizando tarefas administrativas.
+              <strong>Trabalho de Escritório</strong> — Trabalhei num
+              escritório, realizando tarefas administrativas e de apoio.
             </li>
             <li>
               <strong>Ilustradora</strong> — Criação de ilustrações digitais e
@@ -61,19 +163,16 @@
             </li>
           </ul>
           <h3>O que estou a estudar</h3>
-          <p>Desenvolvimento Web — HTML, CSS, JavaScript (IEFP)</p>
+          <p>Desenvolvimento Web — HTML, CSS, JavaScript (IEFP).</p>
         </div>
       </section>
     </main>
-    <footer>
-      <p>&copy; 2026 MTNA Blogue — Portfólio de Maria Teresa.</p>
+    <footer class="mtna-footer">
+      <p>
+        &copy; 2026 MTNA Blogue — Criado por Maria Teresa para partilhar ideias,
+        experiências e inspiração.
+      </p>
     </footer>
-    <script>
-      function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("aberto");
-      }
-    </script>
-    </div>
+    <script src="script.js"></script>
   </body>
 </html>
