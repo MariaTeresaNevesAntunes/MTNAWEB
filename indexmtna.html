@@ -21,9 +21,10 @@
   .mtna-nav { display: flex; justify-content: center; gap: 0.5px; flex-wrap: wrap; }
   .mtna-nav a {
     text-decoration: none; font-size: 1.2rem; color: #fff; font-weight: bold;
-    padding: 10px 16px; border-radius: 8px; transition: 0.3s;
+    padding: 10px 16px; border-radius: 8px; transition: all 0.3s ease;
+    cursor: pointer; position: relative;
   }
-  .mtna-nav a:hover, .mtna-nav a.active { background: #729b52; color: #fff; }
+  .mtna-nav a:hover, .mtna-nav a.active { background: #729b52; color: #fff; transform: scale(1.05); box-shadow: 0 4px 12px rgba(114, 155, 82, 0.4); }
   .mtna-main { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding-top: 120px; }
   .home-hero {
     min-height: 70vh; display: flex; flex-direction: column;
