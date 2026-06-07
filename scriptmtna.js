@@ -4,19 +4,24 @@
 
 // 1. Marcar página ativa no menu
 document.addEventListener('DOMContentLoaded', function() {
-  // Detectar página atual
-  const paginaAtual = window.location.pathname.split('/').pop() || 'indexmtna.html';
+  // Detectar página atual - melhor método
+  const currentURL = window.location.href;
+  const paginaAtual = currentURL.substring(currentURL.lastIndexOf('/') + 1) || 'indexmtna.html';
   
-  // Marcar link ativo
-  const links = document.querySelectorAll('a[href]');
-  links.forEach(link => {
+  // Remover classe active de todos os links de navegação
+  const allNavLinks = document.querySelectorAll('.mtna-nav a');
+  allNavLinks.forEach(link => {
+    link.classList.remove('active');
+    link.classList.remove('ativo');
+  });
+  
+  // Marcar link ativo da página atual
+  allNavLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === paginaAtual) {
+    // Comparar o href com a página atual
+    if (href === paginaAtual || href.endsWith(paginaAtual)) {
       link.classList.add('active');
       link.classList.add('ativo');
-    } else {
-      link.classList.remove('active');
-      link.classList.remove('ativo');
     }
   });
 
@@ -95,11 +100,21 @@ function navegarPara(pagina) {
   window.location.href = pagina;
 }
 
-// 8. Melhorar imagens - lazy loading
+// 8. Melhorar imagens - lazy loading e fallback para erros
 document.querySelectorAll('img').forEach(img => {
   img.addEventListener('load', function() {
     this.style.opacity = '1';
   });
+  img.addEventListener('error', function() {
+    const wrapper = this.closest('.galeria-item') || this.parentElement;
+    if (wrapper) {
+      wrapper.style.display = 'none';
+    } else {
+      this.style.display = 'none';
+    }
+  });
+  img.loading = 'lazy';
+  img.decoding = 'async';
   img.style.opacity = '0.8';
   img.style.transition = 'opacity 0.3s';
 });

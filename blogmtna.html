@@ -1,106 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blogue — MTNA</title>
-  <style>
-    html, body { height: 100%; margin: 0; padding: 0; }
-    body {
-      display: flex; flex-direction: column; min-height: 100%;
-      background: linear-gradient(135deg, #0f3d2e, #1a5a3e, #0a2a1f);
-      background-attachment: fixed; color: #d9ddda;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .cabecalho {
-      position: fixed; top: 0; left: 0; width: 100%;
-      background: #0f3d2e; padding: 55px 0; z-index: 2;
-      border-bottom: 4px solid #020b07; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    .menu { display: flex; justify-content: center; gap: 0.5px; flex-wrap: wrap; }
-    .menu a {
-      text-decoration: none; font-size: 1.2rem; color: #fff; font-weight: bold;
-      padding: 10px 16px; border-radius: 8px; transition: all 0.3s ease;
-      cursor: pointer; position: relative;
-    }
-    .menu a:hover, .menu a.ativo { background: #729b52; color: #fff; transform: scale(1.05); box-shadow: 0 4px 12px rgba(114, 155, 82, 0.4); }
-    .conteudo { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding: 140px 20px 40px; }
-    h1 { text-align: center; font-size: 2.5rem; margin: 20px 0; color: #e9ebe9; }
-    .intro { text-align: center; font-size: 1.1rem; color: #b0b5b0; margin-bottom: 30px; }
-    .blog-filtros {
-      display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
-      margin: 30px 0; padding: 20px;
-    }
-    .blog-filtros button {
-      background: #1a5a3e; color: #fff; border: 2px solid #729b52;
-      padding: 10px 20px; border-radius: 20px; cursor: pointer;
-      font-size: 1rem; font-weight: bold; transition: all 0.3s ease;
-    }
-    .blog-filtros button:hover, .blog-filtros button.ativo {
-      background: #729b52; border-color: #e9ebe9; transform: scale(1.05);
-    }
-    .blog-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .post {
-      background: rgba(15, 61, 46, 0.7); padding: 20px; border-radius: 8px;
-      border-left: 4px solid #729b52; transition: all 0.3s ease;
-      opacity: 1; transform: translateY(0);
-    }
-    .post:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
-    .post h3 { color: #e9ebe9; margin: 0 0 10px 0; }
-    .post p { color: #b0b5b0; margin: 8px 0; }
-    .rodape {
-      display: flex; justify-content: center; background: #0f3d2e;
-      color: #fff; text-align: center; padding: 20px; font-size: 16px;
-      border-top: 5px solid #020b07; width: 100%; margin-top: auto;
-    }
-  </style>
-</head>
-<body>
-  <header class="cabecalho">
-    <nav class="menu">
-      <a href="indexmtna.html">Início</a>
-      <a href="blogmtna.html" class="ativo">Blogue</a>
-      <a href="galmtna.html">Galeria</a>
-      <a href="sobrmtna.html">Sobre Mim</a>
-      <a href="contmtna.html">Contactos</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogue — MTNA</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        background: linear-gradient(135deg, #0f3d2e, #1a5a3e, #0a2a1f);
+        background-attachment: fixed;
+        color: #d9ddda;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .cabecalho {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #0f3d2e;
+        padding: 55px 0;
+        z-index: 2;
+        border-bottom: 4px solid #020b07;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .menu {
+        display: flex;
+        justify-content: center;
+        gap: 0.5px;
+        flex-wrap: wrap;
+      }
+      .menu a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+      .menu a:hover,
+      .menu a.ativo {
+        background: #729b52;
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(114, 155, 82, 0.4);
+      }
+      .conteudo {
+        flex: 1;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 140px 20px 40px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 20px 0;
+        color: #e9ebe9;
+      }
+      .intro {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #b0b5b0;
+        margin-bottom: 30px;
+      }
+      .blog-filtros {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 30px 0;
+        padding: 20px;
+      }
+      .blog-filtros button {
+        background: #1a5a3e;
+        color: #fff;
+        border: 2px solid #729b52;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      .blog-filtros button:hover,
+      .blog-filtros button.ativo {
+        background: #729b52;
+        border-color: #e9ebe9;
+        transform: scale(1.05);
+      }
+      .blog-lista {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .post {
+        background: rgba(15, 61, 46, 0.7);
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #729b52;
+        transition: all 0.3s ease;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .post:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      .post h3 {
+        color: #e9ebe9;
+        margin: 0 0 10px 0;
+      }
+      .post p {
+        color: #b0b5b0;
+        margin: 8px 0;
+      }
+      .rodape {
+        display: flex;
+        justify-content: center;
+        background: #0f3d2e;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 16px;
+        border-top: 5px solid #020b07;
+        width: 100%;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="cabecalho">
+      <nav class="menu">
+        <a href="indexmtna.html">Início</a>
+        <a href="blogmtna.html">Blogue</a>
+        <a href="galmtna.html">Galeria</a>
+        <a href="sobrmtna.html">Sobre Mim</a>
+        <a href="contmtna.html">Contactos</a>
+      </nav>
+    </header>
 
-  <main class="conteudo">
-    <h1>Explicações &amp; Tópicos de Matemática</h1>
-    <p class="intro">Onde a precisão do cálculo encontra a elegância do design.</p>
+    <main class="conteudo">
+      <h1>Explicações &amp; Tópicos de Matemática</h1>
+      <p class="intro">
+        Onde a precisão do cálculo encontra a elegância do design.
+      </p>
 
-    <section class="blog-filtros">
-      <button class="ativo" data-filtro="todos">📚 Todos</button>
-      <button data-filtro="Geometria">📐 Geometria</button>
-      <button data-filtro="Álgebra">f(x) Álgebra</button>
-    </section>
+      <section class="blog-filtros">
+        <button class="ativo" data-filtro="todos">📚 Todos</button>
+        <button data-filtro="Geometria">📐 Geometria</button>
+        <button data-filtro="Álgebra">f(x) Álgebra</button>
+      </section>
 
-    <section class="blog-lista">
-      <article class="post" data-categoria="Geometria">
-        <h3>Teorema de Pitágoras</h3>
-        <p><strong>Categoria:</strong> Geometria</p>
-        <p>Relação entre os lados de um triângulo retângulo.</p>
-      </article>
-      <article class="post" data-categoria="Álgebra">
-        <h3>Funções Lineares</h3>
-        <p><strong>Categoria:</strong> Álgebra</p>
-        <p>Como interpretar gráficos e equações do 1.º grau.</p>
-      </article>
-      <article class="post" data-categoria="Geometria">
-        <h3>Ângulos Notáveis</h3>
-        <p><strong>Categoria:</strong> Geometria</p>
-        <p>Ângulos especiais e as suas aplicações.</p>
-      </article>
-      <article class="post" data-categoria="Álgebra">
-        <h3>Equações do 2.º Grau</h3>
-        <p><strong>Categoria:</strong> Álgebra</p>
-        <p>Resolução de equações quadráticas e parábolas.</p>
-      </article>
-    </section>
-  </main>
+      <section class="blog-lista">
+        <article class="post" data-categoria="Geometria">
+          <h3>Teorema de Pitágoras</h3>
+          <p><strong>Categoria:</strong> Geometria</p>
+          <p>Relação entre os lados de um triângulo retângulo.</p>
+        </article>
+        <article class="post" data-categoria="Álgebra">
+          <h3>Funções Lineares</h3>
+          <p><strong>Categoria:</strong> Álgebra</p>
+          <p>Como interpretar gráficos e equações do 1.º grau.</p>
+        </article>
+        <article class="post" data-categoria="Geometria">
+          <h3>Ângulos Notáveis</h3>
+          <p><strong>Categoria:</strong> Geometria</p>
+          <p>Ângulos especiais e as suas aplicações.</p>
+        </article>
+        <article class="post" data-categoria="Álgebra">
+          <h3>Equações do 2.º Grau</h3>
+          <p><strong>Categoria:</strong> Álgebra</p>
+          <p>Resolução de equações quadráticas e parábolas.</p>
+        </article>
+      </section>
+    </main>
 
-  <footer class="rodape"><p>© 2026 MTNA — Maria Teresa</p></footer>
-  <script src="scriptmtna.js"></script>
-</body>
+    <footer class="rodape">
+      <p>
+        © 2026 MTNA - Criado por Maria Teresa para partilhar ideias, experiências
+        e inspiração.
+      </p>
+    </footer>
+    <script src="scriptmtna.js"></script>
+  </body>
 </html>
