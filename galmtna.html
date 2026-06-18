@@ -19,7 +19,7 @@
         display: flex;
         flex-direction: column;
         min-height: 100%;
-        background: linear-gradient(135deg,#3e4d3d, #171e1c, #222b25);
+        background: linear-gradient(135deg, #3e4d3d, #171e1c, #222b25);
         background-attachment: fixed;
         color: #d9ddda;
         font-family: Arial, Helvetica, sans-serif;
@@ -104,7 +104,9 @@
         height: 220px;
         object-fit: cover;
         display: block;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
       }
       .galeria-item:hover img {
         transform: scale(1.03);
@@ -154,7 +156,7 @@
   <body>
     <header class="mtna-header">
       <nav class="mtna-nav">
-        <a href="indexmtna.html">Início</a>
+        <a href="index.html">Início</a>
         <a href="blogmtna.html">Blogue</a>
         <a href="galmtna.html">Galeria</a>
         <a href="sobrmtna.html">Sobre Mim</a>
@@ -175,21 +177,84 @@
         >.
       </p>
       <div class="galeria-container">
-        <div class="galeria-item"><img src="MTNAimagens/freepik-circulos-20241017124024uxMp.jpeg" alt="Círculos" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/Montanha.jpg" alt="Montanha" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-crucesestrelas-20240927003633VoOa.jpeg" alt="Cruzes e Estrelas" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-floresdocampo-20241017144810epLD.jpeg" alt="Flores do Campo" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-folhas-20241001164255nxfe.jpeg" alt="Folhas" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-rombos-20240917165046aaV0.jpeg" alt="Rombos" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-round-20241123132021vK6s.jpeg" alt="Círculo Redondo" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/Coisasdebruxa.jpg" alt="Coisas de Bruxa" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/coroadvento.jpg" alt="Coroa do Advento" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-estrelabelem-20241114174051UBYR.jpeg" alt="Estrela de Belém" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-meiadenatal-202411082119453IDX.jpeg" alt="Meias de Natal" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-velanatal-202411152215065zBq.jpeg" alt="Vela de Natal" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/fimdeano.jpg" alt="Fim de Ano" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-fantasmabruxa1-202410212109050Zpe.jpeg" alt="Fantasmas e Bruxas" /></div>
-        <div class="galeria-item"><img src="MTNAimagens/freepik-redsquar-20240918212525Dzx8.jpeg" alt="Quadrados Vermelhos" /></div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-circulos-20241017124024uxMp.jpeg"
+            alt="Círculos"
+          />
+        </div>
+        <div class="galeria-item">
+          <img src="MTNAimagens/Montanha.jpg" alt="Montanha" />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-crucesestrelas-20240927003633VoOa.jpeg"
+            alt="Cruzes e Estrelas"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-floresdocampo-20241017144810epLD.jpeg"
+            alt="Flores do Campo"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-folhas-20241001164255nxfe.jpeg"
+            alt="Folhas"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-rombos-20240917165046aaV0.jpeg"
+            alt="Rombos"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-round-20241123132021vK6s.jpeg"
+            alt="Círculo Redondo"
+          />
+        </div>
+        <div class="galeria-item">
+          <img src="MTNAimagens/Coisasdebruxa.jpg" alt="Coisas de Bruxa" />
+        </div>
+        <div class="galeria-item">
+          <img src="MTNAimagens/coroadvento.jpg" alt="Coroa do Advento" />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-estrelabelem-20241114174051UBYR.jpeg"
+            alt="Estrela de Belém"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-meiadenatal-202411082119453IDX.jpeg"
+            alt="Meias de Natal"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-velanatal-202411152215065zBq.jpeg"
+            alt="Vela de Natal"
+          />
+        </div>
+        <div class="galeria-item">
+          <img src="MTNAimagens/fimdeano.jpg" alt="Fim de Ano" />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-fantasmabruxa1-202410212109050Zpe.jpeg"
+            alt="Fantasmas e Bruxas"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="MTNAimagens/freepik-redsquar-20240918212525Dzx8.jpeg"
+            alt="Quadrados Vermelhos"
+          />
+        </div>
       </div>
     </main>
     <footer class="mtna-footer">
