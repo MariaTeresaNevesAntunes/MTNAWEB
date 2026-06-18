@@ -1,120 +1,197 @@
-// ============================================
-// MTNA Blogue - Script Interativo
-// ============================================
+// ======================================================
+//  MTNA — SCRIPT GLOBAL PARA TODAS AS PÁGINAS
+//  Inclui:
+//   ✔ Formulário de Contactos
+//   ✔ Gestão de Tópicos (CRUD)
+//   ✔ Código modular e seguro
+// ======================================================
 
-// 1. Marcar página ativa no menu
-document.addEventListener('DOMContentLoaded', function() {
-  // Detectar página atual - melhor método
-  const currentURL = window.location.href;
-  const paginaAtual = currentURL.substring(currentURL.lastIndexOf('/') + 1) || 'indexmtna.html';
-  
-  // Remover classe active de todos os links de navegação
-  const allNavLinks = document.querySelectorAll('.mtna-nav a');
-  allNavLinks.forEach(link => {
-    link.classList.remove('active');
-    link.classList.remove('ativo');
-  });
-  
-  // Marcar link ativo da página atual
-  allNavLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    // Comparar o href com a página atual
-    if (href === paginaAtual || href.endsWith(paginaAtual)) {
-      link.classList.add('active');
-      link.classList.add('ativo');
-    }
-  });
+document.addEventListener("DOMContentLoaded", () => {
 
-  // 2. Sistema de filtros no Blogue
-  const botoesFiltragem = document.querySelectorAll('.blog-filtros button');
-  const posts = document.querySelectorAll('.blog-lista .post');
+  // ======================================================
+  // 1) FORMULÁRIO DE CONTACTO
+  // ======================================================
 
-  botoesFiltragem.forEach(botao => {
-    botao.addEventListener('click', function() {
-      const filtro = this.getAttribute('data-filtro');
-      
-      // Remover classe ativo de todos os botões
-      botoesFiltragem.forEach(btn => btn.classList.remove('ativo'));
-      // Adicionar classe ativo ao botão clicado
-      this.classList.add('ativo');
-      
-      // Filtrar posts
-      posts.forEach(post => {
-        const categoria = post.getAttribute('data-categoria');
-        if (filtro === 'todos' || categoria === filtro) {
-          post.style.display = 'block';
-          post.classList.add('mostrado');
+  const form = document.getElementById("formulario-contacto");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const mensagem = form.mensagem.value.trim();
+
+      if (!nome || !email || !mensagem) {
+        alert("Por favor preencha todos os campos.");
+        return;
+      }
+
+      try {
+        const resposta = await fetch("http://localhost:3000/api/contactos", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, mensagem })
+        });
+
+        const dados = await resposta.json();
+
+        if (dados.sucesso) {
+          alert("Mensagem enviada com sucesso!");
+          form.reset();
         } else {
-          post.style.display = 'none';
-          post.classList.remove('mostrado');
+          alert("Erro: " + dados.erro);
         }
+      } catch (erro) {
+        console.error("Erro no envio:", erro);
+        alert("Erro ao enviar a mensagem. Verifique o servidor.");
+      }
+    });
+  }
+
+  // ======================================================
+  // 2) TÓPICOS — LISTAR
+  // ======================================================
+
+  const listaTopicos = document.getElementById("lista-topicos");
+
+  if (listaTopicos) {
+    carregarTopicos();
+  }
+
+  async function carregarTopicos() {
+    try {
+      const resposta = await fetch("http://localhost:3000/api/topicos");
+      const topicos = await resposta.json();
+
+      listaTopicos.innerHTML = "";
+
+      topicos.forEach((t) => {
+        const item = document.createElement("div");
+        item.classList.add("topico-item");
+
+        item.innerHTML = `
+          <h3>${t.titulo}</h3>
+          <p><strong>Categoria:</strong> ${t.categoria}</p>
+          <p>${t.descricao}</p>
+          <p><em>Nível:</em> ${t.nivel}</p>
+
+          <button class="editar" data-id="${t.id}">Editar</button>
+          <button class="apagar" data-id="${t.id}">Apagar</button>
+        `;
+
+        listaTopicos.appendChild(item);
+      });
+
+      ativarBotoesTopicos();
+
+    } catch (erro) {
+      console.error("Erro ao carregar tópicos:", erro);
+    }
+  }
+
+  // ======================================================
+  // 3) TÓPICOS — APAGAR
+  // ======================================================
+
+  function ativarBotoesTopicos() {
+    document.querySelectorAll(".apagar").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.dataset.id;
+
+        if (!confirm("Tem a certeza que quer apagar este tópico?")) return;
+
+        await fetch(`http://localhost:3000/api/topicos/${id}`, {
+          method: "DELETE"
+        });
+
+        carregarTopicos();
       });
     });
-  });
 
-  // 3. Efeitos ao passar o rato
-  const navLinks = document.querySelectorAll('.mtna-nav a, .menu a');
-  navLinks.forEach(link => {
-    link.addEventListener('mouseover', function() {
-      this.style.transform = 'scale(1.05)';
+    document.querySelectorAll(".editar").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.id;
+        window.location.href = `editar_topico.html?id=${id}`;
+      });
     });
-    link.addEventListener('mouseout', function() {
-      this.style.transform = 'scale(1)';
-    });
-  });
+  }
 
-  // 4. Scroll suave
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  // ======================================================
+  // 4) TÓPICOS — CRIAR
+  // ======================================================
+
+  const formTopico = document.getElementById("form-criar-topico");
+
+  if (formTopico) {
+    formTopico.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const alvo = document.querySelector(this.getAttribute('href'));
-      if (alvo) {
-        alvo.scrollIntoView({ behavior: 'smooth' });
+
+      const dados = {
+        titulo: formTopico.titulo.value.trim(),
+        categoria: formTopico.categoria.value.trim(),
+        descricao: formTopico.descricao.value.trim(),
+        nivel: formTopico.nivel.value.trim()
+      };
+
+      const resposta = await fetch("http://localhost:3000/api/topicos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      });
+
+      const resultado = await resposta.json();
+
+      if (resultado.sucesso) {
+        alert("Tópico criado com sucesso!");
+        formTopico.reset();
+      } else {
+        alert("Erro ao criar tópico.");
       }
     });
-  });
+  }
 
-  // 5. Adicionar animação de fade-in aos elementos
-  const observador = new IntersectionObserver((entradas) => {
-    entradas.forEach(entrada => {
-      if (entrada.isIntersecting) {
-        entrada.target.style.opacity = '1';
-        entrada.target.style.transform = 'translateY(0)';
-      }
-    });
-  });
+  // ======================================================
+  // 5) TÓPICOS — EDITAR
+  // ======================================================
 
-  document.querySelectorAll('article, .home-hero').forEach(elemento => {
-    elemento.style.opacity = '0';
-    elemento.style.transform = 'translateY(20px)';
-    elemento.style.transition = 'all 0.6s ease';
-    observador.observe(elemento);
-  });
+  const formEditar = document.getElementById("form-editar-topico");
 
-  // 6. Feedback ao carregar página
-  console.log('🎨 MTNA Blogue - Página carregada com sucesso!');
-});
+  if (formEditar) {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
 
-// 7. Função auxiliar para navegar
-function navegarPara(pagina) {
-  window.location.href = pagina;
-}
+    carregarDadosTopico(id);
 
-// 8. Melhorar imagens - lazy loading e fallback para erros
-document.querySelectorAll('img').forEach(img => {
-  img.addEventListener('load', function() {
-    this.style.opacity = '1';
-  });
-  img.addEventListener('error', function() {
-    const wrapper = this.closest('.galeria-item') || this.parentElement;
-    if (wrapper) {
-      wrapper.style.display = 'none';
-    } else {
-      this.style.display = 'none';
+    async function carregarDadosTopico(id) {
+      const resposta = await fetch(`http://localhost:3000/api/topicos/${id}`);
+      const t = await resposta.json();
+
+      formEditar.titulo.value = t.titulo;
+      formEditar.categoria.value = t.categoria;
+      formEditar.descricao.value = t.descricao;
+      formEditar.nivel.value = t.nivel;
     }
-  });
-  img.loading = 'lazy';
-  img.decoding = 'async';
-  img.style.opacity = '0.8';
-  img.style.transition = 'opacity 0.3s';
+
+    formEditar.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const dados = {
+        titulo: formEditar.titulo.value.trim(),
+        categoria: formEditar.categoria.value.trim(),
+        descricao: formEditar.descricao.value.trim(),
+        nivel: formEditar.nivel.value.trim()
+      };
+
+      await fetch(`http://localhost:3000/api/topicos/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      });
+
+      alert("Tópico atualizado com sucesso!");
+      window.location.href = "topicos.html";
+    });
+  }
+
 });
