@@ -2,37 +2,24 @@
 // CONFIGURAÇÕES
 // ===============================
 const POSTS_STATIC_URL = "posts.json";
-const POSTS_STORAGE_KEY = "mtna_posts";
 
 let posts = [];
 let postsFiltrados = [];
 let paginaAtual = 1;
 const postsPorPagina = 6;
 
-function guardarPostsLocais(listaPosts) {
-  localStorage.setItem(POSTS_STORAGE_KEY, JSON.stringify(listaPosts));
-}
-
 async function obterPostsBase() {
-  const postsGuardados = localStorage.getItem(POSTS_STORAGE_KEY);
-
-  if (postsGuardados) {
-    return JSON.parse(postsGuardados);
-  }
-
-  const respostaLocal = await fetch(POSTS_STATIC_URL);
+  const respostaLocal = await fetch(`${POSTS_STATIC_URL}?v=${Date.now()}`);
 
   if (!respostaLocal.ok) {
     throw new Error(`Ficheiro estático indisponível: ${respostaLocal.status}`);
   }
 
-  const postsBase = await respostaLocal.json();
-  guardarPostsLocais(postsBase);
-  return postsBase;
+  return respostaLocal.json();
 }
 
 // ===============================
-// 1. BUSCAR POSTS LOCAIS
+// 1. BUSCAR POSTS
 // ===============================
 async function carregarPosts() {
   try {
@@ -40,17 +27,22 @@ async function carregarPosts() {
     aplicarFiltro("todos");
   } catch (erro) {
     console.error("Erro ao carregar posts:", erro);
+    const lista = document.getElementById("lista-publica");
+
+    if (lista) {
+      lista.innerHTML = "<p>Não foi possível carregar os posts.</p>";
+    }
   }
 }
 
 // ===============================
 // 2. APLICAR FILTRO
 // ===============================
+function aplicarFiltro(categoria) {
   postsFiltrados =
-const POSTS_STORAGE_KEY = "mtna_posts";
     categoria === "todos"
       ? posts
-      : posts.filter((p) => p.categoria === categoria);
+      : posts.filter((post) => post.categoria === categoria);
 
   paginaAtual = 1;
   renderizarPosts();
@@ -58,35 +50,59 @@ const POSTS_STORAGE_KEY = "mtna_posts";
 }
 
 // ===============================
-  const postsGuardados = localStorage.getItem(POSTS_STORAGE_KEY);
 // 3. RENDERIZAR POSTS
-  if (postsGuardados) {
-    return JSON.parse(postsGuardados);
-  }
 // ===============================
-  const respostaLocal = await fetch(POSTS_STATIC_URL);
 function renderizarPosts() {
-  if (!respostaLocal.ok) {
-    throw new Error(`Ficheiro estático indisponível: ${respostaLocal.status}`);
-  }
   const lista = document.getElementById("lista-publica");
-  const postsBase = await respostaLocal.json();
-  localStorage.setItem(POSTS_STORAGE_KEY, JSON.stringify(postsBase));
-  return postsBase;
+
+  if (!lista) {
+    return;
+  }
+
   lista.innerHTML = "";
 
   const inicio = (paginaAtual - 1) * postsPorPagina;
-  try {
-    posts = await obterPostsBase();
-    aplicarFiltro("todos");
-  } catch (erro) {
-    console.error("Erro ao carregar posts:", erro);
+  const fim = inicio + postsPorPagina;
+  const pagina = postsFiltrados.slice(inicio, fim);
+
+  if (pagina.length === 0) {
+    lista.innerHTML = "<p>Sem posts para mostrar.</p>";
+    return;
   }
+
+  pagina.forEach((post) => {
+    const artigo = document.createElement("article");
+    artigo.classList.add("post");
+
+    artigo.innerHTML = `
+      <a href="post.html?id=${post.id}" style="text-decoration:none; color:inherit;">
+        <h3>${post.titulo}</h3>
+        <p><strong>Categoria:</strong> ${post.categoria}</p>
+        <p>${post.conteudo.substring(0, 120)}...</p>
+        <p><em>${new Date(post.data).toLocaleDateString("pt-PT")}</em></p>
+      </a>
+    `;
+
+    lista.appendChild(artigo);
+  });
+}
+
+// ===============================
+// 4. PAGINAÇÃO
+// ===============================
 function renderizarPaginacao() {
-  const totalPaginas = Math.ceil(postsFiltrados.length / postsPorPagina);
   const paginacao = document.getElementById("paginacao");
 
+  if (!paginacao) {
+    return;
+  }
+
+  const totalPaginas = Math.ceil(postsFiltrados.length / postsPorPagina);
   paginacao.innerHTML = "";
+
+  if (totalPaginas <= 1) {
+    return;
+  }
 
   if (paginaAtual > 1) {
     const btnAnterior = document.createElement("button");
@@ -103,7 +119,9 @@ function renderizarPaginacao() {
     const btn = document.createElement("button");
     btn.textContent = i;
 
-    if (i === paginaAtual) btn.style.background = "#729b52";
+    if (i === paginaAtual) {
+      btn.style.background = "#729b52";
+    }
 
     btn.onclick = () => {
       paginaAtual = i;
@@ -133,7 +151,7 @@ document.querySelectorAll(".blog-filtros button").forEach((btn) => {
   btn.addEventListener("click", () => {
     document
       .querySelectorAll(".blog-filtros button")
-      .forEach((b) => b.classList.remove("ativo"));
+      .forEach((botao) => botao.classList.remove("ativo"));
 
     btn.classList.add("ativo");
     aplicarFiltro(btn.dataset.filtro);

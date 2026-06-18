@@ -1,30 +1,17 @@
 const POSTS_STATIC_URL = "posts.json";
-const POSTS_STORAGE_KEY = "mtna_posts";
 
 // 1. Obter ID da URL
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-function guardarPostsLocais(listaPosts) {
-  localStorage.setItem(POSTS_STORAGE_KEY, JSON.stringify(listaPosts));
-}
-
 async function obterPostsBase() {
-  const postsGuardados = localStorage.getItem(POSTS_STORAGE_KEY);
-
-  if (postsGuardados) {
-    return JSON.parse(postsGuardados);
-  }
-
-  const respostaLocal = await fetch(POSTS_STATIC_URL);
+  const respostaLocal = await fetch(`${POSTS_STATIC_URL}?v=${Date.now()}`);
 
   if (!respostaLocal.ok) {
     throw new Error(`Ficheiro estático indisponível: ${respostaLocal.status}`);
   }
 
-  const postsBase = await respostaLocal.json();
-  guardarPostsLocais(postsBase);
-  return postsBase;
+  return respostaLocal.json();
 }
 
 // 2. Buscar o post localmente
@@ -53,6 +40,16 @@ async function carregarPost() {
     }
   } catch (erro) {
     console.error("Erro ao carregar post:", erro);
+    const titulo = document.getElementById("titulo");
+    const conteudo = document.getElementById("conteudo");
+
+    if (titulo) {
+      titulo.textContent = "Post indisponível";
+    }
+
+    if (conteudo) {
+      conteudo.textContent = "Não foi possível carregar este post.";
+    }
   }
 }
 
