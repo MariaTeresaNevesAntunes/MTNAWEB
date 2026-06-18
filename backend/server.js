@@ -21,10 +21,12 @@ app.use(cors());
 // ===============================
 //  SERVIR FRONTEND
 // ===============================
-app.use(express.static(path.join(__dirname, "../frontend")));
+const frontendRoot = path.join(__dirname, "..");
+
+app.use(express.static(frontendRoot));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend", "indexmtna.html"));
+  res.sendFile(path.join(frontendRoot, "index.html"));
 });
 
 // ===============================

@@ -1,12 +1,31 @@
 // ======================================================
 //  MTNA — SCRIPT GLOBAL PARA TODAS AS PÁGINAS
-//  Inclui:
-//   ✔ Formulário de Contactos
-//   ✔ Gestão de Tópicos (CRUD)
-//   ✔ Código modular e seguro
+//  Versão estática com armazenamento local no navegador
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  const CONTACTOS_STORAGE_KEY = "mtna_contactos";
+  const TOPICOS_STORAGE_KEY = "mtna_topicos";
+
+  function lerLista(chave, valorPadrao) {
+    try {
+      const guardado = localStorage.getItem(chave);
+      return guardado ? JSON.parse(guardado) : valorPadrao;
+    } catch {
+      return valorPadrao;
+    }
+  }
+
+  function guardarLista(chave, valor) {
+    localStorage.setItem(chave, JSON.stringify(valor));
+  }
+
+  function proximoId(lista) {
+    return (
+      lista.reduce((maior, item) => Math.max(maior, Number(item.id) || 0), 0) +
+      1
+    );
+  }
 
   // ======================================================
   // 1) FORMULÁRIO DE CONTACTO
@@ -15,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("formulario-contacto");
 
   if (form) {
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const nome = form.nome.value.trim();
@@ -27,25 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      try {
-        const resposta = await fetch("http://localhost:3000/api/contactos", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome, email, mensagem })
-        });
+      const contactos = lerLista(CONTACTOS_STORAGE_KEY, []);
 
-        const dados = await resposta.json();
+      contactos.unshift({
+        id: proximoId(contactos),
+        nome,
+        email,
+        mensagem,
+        data: new Date().toLocaleString("pt-PT"),
+      });
 
-        if (dados.sucesso) {
-          alert("Mensagem enviada com sucesso!");
-          form.reset();
-        } else {
-          alert("Erro: " + dados.erro);
-        }
-      } catch (erro) {
-        console.error("Erro no envio:", erro);
-        alert("Erro ao enviar a mensagem. Verifique o servidor.");
-      }
+      guardarLista(CONTACTOS_STORAGE_KEY, contactos);
+      form.reset();
+      alert("Mensagem guardada localmente.");
     });
   }
 
@@ -55,143 +68,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const listaTopicos = document.getElementById("lista-topicos");
 
-  if (listaTopicos) {
-    carregarTopicos();
-  }
-
-  async function carregarTopicos() {
-    try {
-      const resposta = await fetch("http://localhost:3000/api/topicos");
-      const topicos = await resposta.json();
-
-      listaTopicos.innerHTML = "";
-
-      topicos.forEach((t) => {
-        const item = document.createElement("div");
-        item.classList.add("topico-item");
-
-        item.innerHTML = `
-          <h3>${t.titulo}</h3>
-          <p><strong>Categoria:</strong> ${t.categoria}</p>
-          <p>${t.descricao}</p>
-          <p><em>Nível:</em> ${t.nivel}</p>
-
-          <button class="editar" data-id="${t.id}">Editar</button>
-          <button class="apagar" data-id="${t.id}">Apagar</button>
-        `;
-
-        listaTopicos.appendChild(item);
-      });
-
-      ativarBotoesTopicos();
-
-    } catch (erro) {
-      console.error("Erro ao carregar tópicos:", erro);
+  function renderizarTopicos() {
+    if (!listaTopicos) {
+      return;
     }
-  }
 
-  // ======================================================
-  // 3) TÓPICOS — APAGAR
-  // ======================================================
+    const topicos = lerLista(TOPICOS_STORAGE_KEY, []);
 
-  function ativarBotoesTopicos() {
-    document.querySelectorAll(".apagar").forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const id = btn.dataset.id;
+    if (topicos.length === 0) {
+      listaTopicos.innerHTML = "<p>Sem tópicos ainda.</p>";
+      return;
+    }
 
-        if (!confirm("Tem a certeza que quer apagar este tópico?")) return;
+    listaTopicos.innerHTML = topicos
+      .map(
+        (t) => `
+          <div class="topico-item">
+            <h3>${t.titulo}</h3>
+            <p><strong>Categoria:</strong> ${t.categoria}</p>
+            <p>${t.descricao}</p>
+            <p><em>Nível:</em> ${t.nivel}</p>
+            <button class="apagar" type="button" data-id="${t.id}">Apagar</button>
+          </div>
+        `,
+      )
+      .join("");
 
-        await fetch(`http://localhost:3000/api/topicos/${id}`, {
-          method: "DELETE"
-        });
-
-        carregarTopicos();
-      });
-    });
-
-    document.querySelectorAll(".editar").forEach((btn) => {
+    listaTopicos.querySelectorAll(".apagar").forEach((btn) => {
       btn.addEventListener("click", () => {
         const id = btn.dataset.id;
-        window.location.href = `editar_topico.html?id=${id}`;
+        const atualizados = topicos.filter((t) => String(t.id) !== String(id));
+        guardarLista(TOPICOS_STORAGE_KEY, atualizados);
+        renderizarTopicos();
       });
     });
   }
 
-  // ======================================================
-  // 4) TÓPICOS — CRIAR
-  // ======================================================
+  function garantirTopicosIniciais() {
+    if (localStorage.getItem(TOPICOS_STORAGE_KEY) !== null) {
+      return;
+    }
+
+    guardarLista(TOPICOS_STORAGE_KEY, [
+      {
+        id: 1,
+        titulo: "Ângulos e Triângulos",
+        categoria: "Geometria",
+        descricao:
+          "Introdução aos tipos de ângulos e propriedades dos triângulos.",
+        nivel: "Básico",
+      },
+      {
+        id: 2,
+        titulo: "Funções Lineares",
+        categoria: "Álgebra",
+        descricao: "Como identificar, representar e resolver funções lineares.",
+        nivel: "Intermédio",
+      },
+      {
+        id: 3,
+        titulo: "Trigonometria Avançada",
+        categoria: "Geometria",
+        descricao: "Estudo aprofundado de identidades trigonométricas.",
+        nivel: "Avançado",
+      },
+    ]);
+  }
 
   const formTopico = document.getElementById("form-criar-topico");
 
   if (formTopico) {
-    formTopico.addEventListener("submit", async (e) => {
+    formTopico.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const dados = {
+      const topicos = lerLista(TOPICOS_STORAGE_KEY, []);
+
+      topicos.unshift({
+        id: proximoId(topicos),
         titulo: formTopico.titulo.value.trim(),
         categoria: formTopico.categoria.value.trim(),
         descricao: formTopico.descricao.value.trim(),
-        nivel: formTopico.nivel.value.trim()
-      };
-
-      const resposta = await fetch("http://localhost:3000/api/topicos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados)
+        nivel: formTopico.nivel.value.trim(),
       });
 
-      const resultado = await resposta.json();
-
-      if (resultado.sucesso) {
-        alert("Tópico criado com sucesso!");
-        formTopico.reset();
-      } else {
-        alert("Erro ao criar tópico.");
-      }
+      guardarLista(TOPICOS_STORAGE_KEY, topicos);
+      formTopico.reset();
+      renderizarTopicos();
+      alert("Tópico guardado localmente.");
     });
   }
 
   // ======================================================
-  // 5) TÓPICOS — EDITAR
+  // 3) INICIALIZAÇÃO
   // ======================================================
 
-  const formEditar = document.getElementById("form-editar-topico");
-
-  if (formEditar) {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    carregarDadosTopico(id);
-
-    async function carregarDadosTopico(id) {
-      const resposta = await fetch(`http://localhost:3000/api/topicos/${id}`);
-      const t = await resposta.json();
-
-      formEditar.titulo.value = t.titulo;
-      formEditar.categoria.value = t.categoria;
-      formEditar.descricao.value = t.descricao;
-      formEditar.nivel.value = t.nivel;
-    }
-
-    formEditar.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const dados = {
-        titulo: formEditar.titulo.value.trim(),
-        categoria: formEditar.categoria.value.trim(),
-        descricao: formEditar.descricao.value.trim(),
-        nivel: formEditar.nivel.value.trim()
-      };
-
-      await fetch(`http://localhost:3000/api/topicos/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados)
-      });
-
-      alert("Tópico atualizado com sucesso!");
-      window.location.href = "topicos.html";
-    });
-  }
-
+  garantirTopicosIniciais();
+  renderizarTopicos();
 });

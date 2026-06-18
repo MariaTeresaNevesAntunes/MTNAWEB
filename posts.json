@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "titulo": "Bem-vindo ao meu Blogue",
+    "categoria": "Introdução",
+    "conteudo": "Este é o primeiro post do meu novo sistema CRUD!",
+    "data": "2026-06-15",
+    "imagem": null
+  },
+  {
+    "id": 2,
+    "titulo": "Matemática no Dia a Dia",
+    "categoria": "Matemática",
+    "conteudo": "Como a matemática aparece em situações comuns do quotidiano.",
+    "data": "2026-06-14",
+    "imagem": null
+  },
+  {
+    "id": 3,
+    "titulo": "Criatividade e Tecnologia",
+    "categoria": "Tecnologia",
+    "conteudo": "Reflexões sobre como a criatividade impulsiona a inovação tecnológica.",
+    "data": "2026-06-13",
+    "imagem": null
+  }
+]
