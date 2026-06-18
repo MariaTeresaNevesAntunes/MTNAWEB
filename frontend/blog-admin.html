@@ -2,316 +2,90 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administração — MTNA Blogue</title>
-
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #0f3d2e;
-        color: #e9ebe9;
-      }
-
-      header {
-        background: #143e30;
-        padding: 20px;
-        text-align: center;
-        border-bottom: 4px solid #020b07;
-      }
-
-      header h1 {
-        margin: 0;
-        font-size: 2rem;
-      }
-
-      main {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
-      }
-
-      h2 {
-        margin-top: 40px;
-        border-left: 5px solid #729b52;
-        padding-left: 10px;
-      }
-
-      form {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 40px;
-      }
-
-      form input,
-      form textarea,
-      form select {
-        width: 100%;
-        padding: 10px;
-        margin: 8px 0 20px;
-        border: none;
-        border-radius: 6px;
-        background: #1a5a3e;
-        color: #fff;
-      }
-
-      form button {
-        background: #729b52;
-        border: none;
-        padding: 12px 20px;
-        font-size: 1rem;
-        font-weight: bold;
-        color: #fff;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      form button:hover {
-        background: #8bc06a;
-      }
-
-      #lista-posts,
-      #lista-contactos,
-      #lista-topicos {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .item {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 20px;
-        border-radius: 8px;
-        border-left: 4px solid #729b52;
-      }
-
-      .item h3 {
-        margin: 0 0 10px;
-      }
-
-      .item button {
-        margin-right: 10px;
-        padding: 8px 14px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .apagar {
-        background: #d9534f;
-        color: #fff;
-      }
-
-      .apagar:hover {
-        background: #ff6b67;
-      }
-    </style>
+    <title>Painel de Administração — MTNA</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <header>
-      <h1>Painel de Administração — MTNA Blogue</h1>
-    </header>
+    <h1>Painel de Administração — MTNA Blogue</h1>
 
-    <main>
-      <!-- ========================= -->
-      <!-- POSTS -->
-      <!-- ========================= -->
-      <h2>Criar / Editar Post</h2>
+    <!-- =============================== -->
+    <!--  POSTS — CRIAR                 -->
+    <!-- =============================== -->
+    <section class="admin-section">
+      <h2>📝 Criar Post</h2>
 
       <form id="form-post">
-        <input type="hidden" id="id-editar" />
+        <label>Título:</label>
+        <input type="text" id="post-titulo" required />
 
-        <label>Título</label>
-        <input type="text" id="titulo" required />
+        <label>Categoria:</label>
+        <input type="text" id="post-categoria" required />
 
-        <label>Categoria</label>
-        <select id="categoria" required>
-          <option value="">Escolher...</option>
-          <option value="Geometria">Geometria</option>
-          <option value="Álgebra">Álgebra</option>
-        </select>
+        <label>Conteúdo:</label>
+        <textarea id="post-conteudo" required></textarea>
 
-        <label>Conteúdo</label>
-        <textarea id="conteudo" rows="5" required></textarea>
+        <label>Data (aaaa-mm-dd):</label>
+        <input type="date" id="post-data" required />
 
-        <label>Data</label>
-        <input type="date" id="data" required />
+        <label>Imagem (URL opcional):</label>
+        <input type="text" id="post-imagem" />
 
-        <label>Imagem (URL opcional)</label>
-        <input type="text" id="imagem" placeholder="http://..." />
-
-        <button id="btn-guardar">Criar Post</button>
+        <button type="submit">Criar Post</button>
       </form>
+    </section>
 
-      <h2>Lista de Posts</h2>
-      <div id="lista-posts"></div>
+    <!-- =============================== -->
+    <!--  POSTS — LISTA                 -->
+    <!-- =============================== -->
+    <section class="admin-section">
+      <h2>📚 Lista de Posts</h2>
+      <div id="lista-posts" class="lista-admin"></div>
+    </section>
 
-      <!-- ========================= -->
-      <!-- CONTACTOS -->
-      <!-- ========================= -->
-      <h2>Mensagens de Contacto</h2>
-      <div id="lista-contactos"></div>
-
-      <!-- ========================= -->
-      <!-- TÓPICOS -->
-      <!-- ========================= -->
-      <h2>Criar Tópico</h2>
+    <!-- =============================== -->
+    <!--  TÓPICOS — CRIAR               -->
+    <!-- =============================== -->
+    <section class="admin-section">
+      <h2>📘 Criar Tópico</h2>
 
       <form id="form-topico">
-        <label>Título</label>
+        <label>Título:</label>
         <input type="text" id="topico-titulo" required />
 
-        <label>Categoria</label>
-        <select id="topico-categoria" required>
-          <option value="">Escolher...</option>
-          <option value="Geometria">Geometria</option>
-          <option value="Álgebra">Álgebra</option>
+        <label>Categoria:</label>
+        <input type="text" id="topico-categoria" required />
+
+        <label>Descrição:</label>
+        <textarea id="topico-descricao" required></textarea>
+
+        <label>Nível:</label>
+        <select id="topico-nivel">
+          <option>Iniciante</option>
+          <option>Intermédio</option>
+          <option>Avançado</option>
         </select>
 
-        <label>Descrição</label>
-        <textarea id="topico-descricao" rows="4" required></textarea>
-
-        <label>Nível</label>
-        <select id="topico-nivel" required>
-          <option value="">Escolher...</option>
-          <option value="Básico">Básico</option>
-          <option value="Intermédio">Intermédio</option>
-          <option value="Avançado">Avançado</option>
-        </select>
-
-        <button>Criar Tópico</button>
+        <button type="submit">Criar Tópico</button>
       </form>
+    </section>
 
-      <h2>Lista de Tópicos</h2>
-      <div id="lista-topicos"></div>
-    </main>
+    <!-- =============================== -->
+    <!--  TÓPICOS — LISTA               -->
+    <!-- =============================== -->
+    <section class="admin-section">
+      <h2>📗 Lista de Tópicos</h2>
+      <div id="lista-topicos" class="lista-admin"></div>
+    </section>
 
-    <script>
-      /* ============================
-         POSTS
-      ============================ */
-      async function carregarPosts() {
-        const resposta = await fetch("/api/posts");
-        const posts = await resposta.json();
+    <!-- =============================== -->
+    <!--  CONTACTOS — LISTA             -->
+    <!-- =============================== -->
+    <section class="admin-section">
+      <h2>📩 Lista de Contactos</h2>
+      <div id="lista-contactos" class="lista-admin"></div>
+    </section>
 
-        const lista = document.getElementById("lista-posts");
-        lista.innerHTML = "";
-
-        posts.forEach((p) => {
-          const div = document.createElement("div");
-          div.className = "item";
-
-          div.innerHTML = `
-            <h3>${p.titulo}</h3>
-            <p><strong>Categoria:</strong> ${p.categoria}</p>
-            <p>${p.conteudo}</p>
-            <p><em>Data:</em> ${p.data}</p>
-            <button class="apagar" onclick="apagarPost(${p.id})">Apagar</button>
-          `;
-
-          lista.appendChild(div);
-        });
-      }
-      carregarPosts();
-
-      async function apagarPost(id) {
-        if (!confirm("Tem a certeza que quer apagar este post?")) return;
-        await fetch(`/api/posts/${id}`, { method: "DELETE" });
-        carregarPosts();
-      }
-
-      /* ============================
-         CONTACTOS
-      ============================ */
-      async function carregarContactos() {
-        const resposta = await fetch("/api/contactos");
-        const contactos = await resposta.json();
-
-        const lista = document.getElementById("lista-contactos");
-        lista.innerHTML = "";
-
-        contactos.forEach((c) => {
-          const div = document.createElement("div");
-          div.className = "item";
-
-          div.innerHTML = `
-            <h3>${c.nome}</h3>
-            <p><strong>Email:</strong> ${c.email}</p>
-            <p>${c.mensagem}</p>
-            <p><em>Enviado em:</em> ${c.data_envio}</p>
-            <button class="apagar" onclick="apagarContacto(${c.id})">Apagar</button>
-          `;
-
-          lista.appendChild(div);
-        });
-      }
-      carregarContactos();
-
-      async function apagarContacto(id) {
-        if (!confirm("Tem a certeza que quer apagar esta mensagem?")) return;
-        await fetch(`/api/contactos/${id}`, { method: "DELETE" });
-        carregarContactos();
-      }
-
-      /* ============================
-         TÓPICOS
-      ============================ */
-      async function carregarTopicos() {
-        const resposta = await fetch("/api/topicos");
-        const topicos = await resposta.json();
-
-        const lista = document.getElementById("lista-topicos");
-        lista.innerHTML = "";
-
-        topicos.forEach((t) => {
-          const div = document.createElement("div");
-          div.className = "item";
-
-          div.innerHTML = `
-            <h3>${t.titulo}</h3>
-            <p><strong>Categoria:</strong> ${t.categoria}</p>
-            <p>${t.descricao}</p>
-            <p><em>Nível:</em> ${t.nivel}</p>
-            <button class="apagar" onclick="apagarTopico(${t.id})">Apagar</button>
-          `;
-
-          lista.appendChild(div);
-        });
-      }
-      carregarTopicos();
-
-      async function apagarTopico(id) {
-        if (!confirm("Tem a certeza que quer apagar este tópico?")) return;
-        await fetch(`/api/topicos/${id}`, { method: "DELETE" });
-        carregarTopicos();
-      }
-
-      document
-        .getElementById("form-topico")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-
-          const dados = {
-            titulo: document.getElementById("topico-titulo").value,
-            categoria: document.getElementById("topico-categoria").value,
-            descricao: document.getElementById("topico-descricao").value,
-            nivel: document.getElementById("topico-nivel").value,
-          };
-
-          await fetch("/api/topicos", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dados),
-          });
-
-          e.target.reset();
-          carregarTopicos();
-        });
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
