@@ -3,84 +3,84 @@
     "id": 1,
     "titulo": "A Beleza dos Triângulos",
     "categoria": "Geometria",
-    "conteudo": "Os triângulos são uma das formas mais simples e, ao mesmo tempo, mais fascinantes da matemática. Presentes na arquitetura, na engenharia e até na arte, eles mostram como três lados podem criar estruturas extremamente estáveis. Explorar triângulos é descobrir relações surpreendentes entre ângulos, lados e simetrias.",
+    "conteudo": "Os triângulos são uma das formas mais simples e elegantes da matemática.",
     "data": "2026-06-10"
   },
   {
     "id": 2,
     "titulo": "Funções: A Linguagem das Relações",
     "categoria": "Álgebra",
-    "conteudo": "As funções são a forma como a matemática descreve relações entre grandezas. Sempre que algo depende de outra coisa — como a velocidade depender do tempo — estamos perante uma função. Compreender funções é abrir portas para gráficos, modelos e previsões.",
+    "conteudo": "As funções são a forma como a matemática descreve relações entre variáveis.",
     "data": "2026-06-09"
   },
   {
     "id": 3,
     "titulo": "Ângulos no Mundo Real",
     "categoria": "Geometria",
-    "conteudo": "Os ângulos estão por todo o lado: nas esquinas das casas, nas rampas, nos telhados e até nos ecrãs dos telemóveis. Saber medir e interpretar ângulos ajuda-nos a compreender melhor o espaço que nos rodeia. É uma das bases da navegação, da construção e do design.",
+    "conteudo": "Os ângulos estão por todo o lado: nas esquinas das ruas, nas estruturas dos edifícios e nas obras de arte.",
     "data": "2026-06-08"
   },
   {
     "id": 4,
     "titulo": "Equações: Resolver o Desconhecido",
     "categoria": "Álgebra",
-    "conteudo": "Resolver equações é como desvendar um pequeno mistério matemático. A incógnita representa algo que ainda não sabemos, mas que podemos descobrir com lógica e passos bem definidos. É uma das ferramentas mais poderosas para resolver problemas reais.",
+    "conteudo": "Resolver equações é como desvendar um pequeno mistério matemático.",
     "data": "2026-06-07"
   },
   {
     "id": 5,
     "titulo": "Polígonos e as Suas Propriedades",
     "categoria": "Geometria",
-    "conteudo": "Os polígonos são figuras formadas por segmentos de reta. Quadrados, pentágonos, hexágonos — todos têm características únicas que os tornam úteis em diferentes contextos. A matemática dos polígonos ajuda-nos a compreender padrões e simetrias.",
+    "conteudo": "Os polígonos são figuras formadas por segmentos de reta e aparecem em inúmeras aplicações.",
     "data": "2026-06-06"
   },
   {
     "id": 6,
     "titulo": "A Importância das Expressões Algébricas",
     "categoria": "Álgebra",
-    "conteudo": "As expressões algébricas permitem representar ideias matemáticas de forma compacta e elegante. São como frases que descrevem relações entre números e variáveis. Aprender a manipulá-las é essencial para avançar em qualquer área da matemática.",
+    "conteudo": "As expressões algébricas permitem representar ideias matemáticas de forma compacta e elegante.",
     "data": "2026-06-05"
   },
   {
     "id": 7,
     "titulo": "Circunferências e o Mundo Curvo",
     "categoria": "Geometria",
-    "conteudo": "A circunferência é uma das formas mais perfeitas da natureza. Desde rodas até órbitas planetárias, o círculo está presente em inúmeros fenómenos. Estudar circunferências é compreender proporções, distâncias e movimentos circulares.",
+    "conteudo": "A circunferência é uma das formas mais perfeitas da natureza e aparece em inúmeros fenómenos.",
     "data": "2026-06-04"
   },
   {
     "id": 8,
     "titulo": "Sistemas de Equações no Dia a Dia",
     "categoria": "Álgebra",
-    "conteudo": "Os sistemas de equações surgem sempre que temos duas condições a acontecer ao mesmo tempo. Por exemplo, quando queremos comparar preços, quantidades ou trajetos. Resolver sistemas é encontrar o ponto onde duas ideias se encontram.",
+    "conteudo": "Os sistemas de equações surgem sempre que temos duas condições a acontecer ao mesmo tempo.",
     "data": "2026-06-03"
   },
   {
     "id": 9,
     "titulo": "Simetria: A Matemática da Beleza",
     "categoria": "Geometria",
-    "conteudo": "A simetria está presente na natureza, na arte e no design. É um dos conceitos que mais contribui para a sensação de equilíbrio visual. Compreender simetria ajuda-nos a criar padrões harmoniosos e a analisar formas complexas.",
+    "conteudo": "A simetria está presente na natureza, na arte e no design, criando padrões harmoniosos.",
     "data": "2026-06-02"
   },
   {
     "id": 10,
     "titulo": "Potências e Crescimento Rápido",
     "categoria": "Álgebra",
-    "conteudo": "As potências representam crescimento acelerado. São usadas para descrever fenómenos como populações, juros compostos e tecnologia. Perceber como funcionam é essencial para entender o mundo moderno.",
+    "conteudo": "As potências representam crescimento acelerado e são essenciais para compreender fenómenos modernos.",
     "data": "2026-06-01"
   },
   {
     "id": 11,
     "titulo": "Área e Perímetro: Medir o Espaço",
     "categoria": "Geometria",
-    "conteudo": "Área e perímetro são conceitos fundamentais para medir superfícies e contornos. Desde calcular tinta para uma parede até planear um jardim, estes conceitos estão sempre presentes. São ferramentas práticas e indispensáveis.",
+    "conteudo": "Área e perímetro são conceitos fundamentais para medir superfícies e contornos.",
     "data": "2026-05-31"
   },
   {
     "id": 12,
     "titulo": "Inequações: Comparar Quantidades",
     "categoria": "Álgebra",
-    "conteudo": "As inequações permitem comparar valores e estabelecer limites. São essenciais em problemas de otimização, economia e tomada de decisões. Aprender inequações é aprender a definir fronteiras e possibilidades.",
+    "conteudo": "As inequações permitem comparar valores e estabelecer limites em problemas reais.",
     "data": "2026-05-30"
   }
 ]

@@ -143,17 +143,6 @@
       }
     </style>
   </head>
-  <script>
-    function verificarAdmin() {
-      const codigo = document.getElementById("codigo-admin").value;
-
-      // Código secreto — podes mudar se quiseres
-      if (codigo === "mtna2026") {
-        document.getElementById("admin-acesso").style.display = "none";
-        document.getElementById("botao-admin").style.display = "block";
-      }
-    }
-  </script>
 
   <body>
     <header class="cabecalho">
@@ -171,6 +160,7 @@
       <p class="intro">
         Onde a precisão do cálculo encontra a elegância do design.
       </p>
+
       <!-- ACESSO ADMIN -->
       <div id="admin-acesso" style="text-align: right; margin-bottom: 20px">
         <input
@@ -211,6 +201,21 @@
         >
           Painel de Administração
         </a>
+
+        <button
+          onclick="sairAdmin()"
+          style="
+            margin-left: 10px;
+            padding: 10px 20px;
+            background: #b33a3a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+          "
+        >
+          Sair
+        </button>
       </div>
 
       <section class="blog-filtros">
@@ -231,7 +236,42 @@
       </p>
     </footer>
 
+    <script>
+      const CODIGO_ADMIN = "mtna2026";
+
+      window.onload = function () {
+        const adminAtivo = localStorage.getItem("admin");
+        if (adminAtivo === "true") {
+          mostrarPainelAdmin();
+        } else {
+          esconderPainelAdmin();
+        }
+      };
+
+      function verificarAdmin() {
+        const codigo = document.getElementById("codigo-admin").value;
+        if (codigo === CODIGO_ADMIN) {
+          localStorage.setItem("admin", "true");
+          mostrarPainelAdmin();
+        }
+      }
+
+      function mostrarPainelAdmin() {
+        document.getElementById("admin-acesso").style.display = "none";
+        document.getElementById("botao-admin").style.display = "block";
+      }
+
+      function esconderPainelAdmin() {
+        document.getElementById("admin-acesso").style.display = "block";
+        document.getElementById("botao-admin").style.display = "none";
+      }
+
+      function sairAdmin() {
+        localStorage.removeItem("admin");
+        esconderPainelAdmin();
+      }
+    </script>
+
     <script src="public.js"></script>
-    git
   </body>
 </html>
