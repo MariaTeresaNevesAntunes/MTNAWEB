@@ -143,6 +143,17 @@
       }
     </style>
   </head>
+  <script>
+    function verificarAdmin() {
+      const codigo = document.getElementById("codigo-admin").value;
+
+      // Código secreto — podes mudar se quiseres
+      if (codigo === "mtna2026") {
+        document.getElementById("admin-acesso").style.display = "none";
+        document.getElementById("botao-admin").style.display = "block";
+      }
+    }
+  </script>
 
   <body>
     <header class="cabecalho">
@@ -160,9 +171,44 @@
       <p class="intro">
         Onde a precisão do cálculo encontra a elegância do design.
       </p>
-      <div style="text-align: right; margin-bottom: 20px;">
-        <a href="blog-admin.html" 
-          style="background:#729b52; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-weight:bold;">
+      <!-- ACESSO ADMIN -->
+      <div id="admin-acesso" style="text-align: right; margin-bottom: 20px">
+        <input
+          id="codigo-admin"
+          type="password"
+          placeholder="Código admin"
+          style="padding: 6px; border-radius: 4px; border: none"
+        />
+        <button
+          onclick="verificarAdmin()"
+          style="
+            padding: 6px 12px;
+            background: #729b52;
+            color: white;
+            border: none;
+            border-radius: 4px;
+          "
+        >
+          Entrar
+        </button>
+      </div>
+
+      <!-- BOTÃO ADMIN (ESCONDIDO ATÉ VALIDAR) -->
+      <div
+        id="botao-admin"
+        style="display: none; text-align: right; margin-bottom: 20px"
+      >
+        <a
+          href="blog-admin.html"
+          style="
+            background: #729b52;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+          "
+        >
           Painel de Administração
         </a>
       </div>
@@ -186,5 +232,6 @@
     </footer>
 
     <script src="public.js"></script>
+    git
   </body>
 </html>
