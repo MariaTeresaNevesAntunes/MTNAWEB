@@ -177,6 +177,82 @@
         padding: 20px;
         border-top: 5px solid #020b07;
       }
+
+      @media (max-width: 760px) {
+        .mtna-header {
+          padding: 14px 0;
+        }
+
+        .mtna-nav {
+          gap: 6px;
+          padding: 0 12px;
+        }
+
+        .mtna-nav a {
+          font-size: 0.95rem;
+          padding: 8px 12px;
+        }
+
+        .mtna-main {
+          padding-top: 155px;
+        }
+
+        .mtna-main h1 {
+          font-size: 2.5rem;
+          margin: 18px 0;
+        }
+
+        .contactos,
+        .formulario-contacto {
+          width: min(100%, calc(100% - 24px));
+        }
+
+        .formulario-contacto {
+          padding: 24px;
+          margin-bottom: 44px;
+        }
+
+        .mtna-footer {
+          padding: 16px 14px;
+          font-size: 0.92rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mtna-header {
+          padding: 12px 0;
+        }
+
+        .mtna-nav {
+          gap: 5px;
+        }
+
+        .mtna-nav a {
+          font-size: 0.88rem;
+          padding: 7px 10px;
+        }
+
+        .mtna-main {
+          padding-top: 170px;
+        }
+
+        .mtna-main h1 {
+          font-size: 2rem;
+        }
+
+        .contactos,
+        .formulario-contacto {
+          width: min(100%, calc(100% - 18px));
+        }
+
+        .formulario-contacto {
+          padding: 18px;
+        }
+
+        .formulario-contacto button {
+          font-size: 1rem;
+        }
+      }
     </style>
   </head>
   <script src="scriptmtna.js"></script>

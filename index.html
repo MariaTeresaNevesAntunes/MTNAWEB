@@ -101,17 +101,77 @@
         font-size: 16px;
         border-top: 5px solid #020b07;
         width: 100%;
-
       }
-      
+
+      @media (max-width: 760px) {
+        .mtna-header {
+          padding: 16px 0;
+        }
+
+        .mtna-nav {
+          gap: 8px;
+          padding: 0 12px;
+        }
+
+        .mtna-nav a {
+          font-size: 0.95rem;
+          padding: 8px 12px;
+        }
+
+        .mtna-main {
+          padding-top: 150px;
+        }
+
+        .home-hero {
+          min-height: 58vh;
+        }
+
+        .home-hero p {
+          margin-top: 24px;
+          letter-spacing: 0.08em;
+        }
+
+        .mtna-footer {
+          padding: 16px 14px;
+          font-size: 0.92rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mtna-header {
+          padding: 12px 0;
+        }
+
+        .mtna-nav {
+          gap: 6px;
+        }
+
+        .mtna-nav a {
+          font-size: 0.88rem;
+          padding: 7px 10px;
+        }
+
+        .mtna-main {
+          padding-top: 164px;
+        }
+
+        .home-hero {
+          min-height: 52vh;
+        }
+
+        .home-hero p {
+          padding: 0 14px;
+          font-size: 0.95rem;
+        }
+      }
     </style>
   </head>
   <body>
     <header class="mtna-header">
       <nav class="mtna-nav">
         <a href="index.html">Início</a>
-        <a href="blogmtna.html">Blogue</a> 
-        <a href="aplimat.html"><strong>Apps Matemática</strong></a>      
+        <a href="blogmtna.html">Blogue</a>
+        <a href="aplimat.html"><strong>Apps Matemática</strong></a>
         <a href="aplidiv.html">Apps Diversos</a>
         <a href="galmtna.html">Galeria</a>
         <a href="sobrmtna.html">Sobre Mim</a>
