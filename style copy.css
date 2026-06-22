@@ -1,0 +1,117 @@
+/* ===============================
+   ESTILO GERAL
+================================ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #3e4d3d, #171e1c, #222b25);
+  color: white;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: white;
+}
+
+/* ===============================
+   SECÇÕES DO PAINEL ADMIN
+================================ */
+.admin-section {
+  background: #1b2e28;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00000055;
+}
+
+.admin-section h2 {
+  margin-top: 0;
+}
+
+/* ===============================
+   FORMULÁRIOS
+================================ */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea,
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+button {
+  background: #374a44;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #374a44;
+}
+
+/* ===============================
+   LISTAS (POSTS, TÓPICOS, CONTACTOS)
+================================ */
+.lista-admin {
+  margin-top: 20px;
+}
+
+.item {
+  background: #1a5c47;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.item p {
+  margin: 5px 0;
+}
+
+.item button {
+  margin-right: 10px;
+}
+
+/* ===============================
+   CONTACTOS
+================================ */
+.contacto-item {
+  background: #1a5c47;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.contacto-item p {
+  margin: 5px 0;
+}
+
+.contacto-item button {
+  background: #b30000;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.contacto-item button:hover {
+  background: #ff1a1a;
+}
+.post-image img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+}

@@ -8,6 +8,26 @@ let postsFiltrados = [];
 let paginaAtual = 1;
 const postsPorPagina = 6;
 
+function resumirTexto(texto, limite) {
+  if (!texto) {
+    return "";
+  }
+
+  if (texto.length <= limite) {
+    return texto;
+  }
+
+  return `${texto.slice(0, limite).trimEnd()}...`;
+}
+
+function formatarData(data) {
+  try {
+    return new Date(data).toLocaleDateString("pt-PT");
+  } catch {
+    return data;
+  }
+}
+
 async function obterPostsBase() {
   const respostaLocal = await fetch(`${POSTS_STATIC_URL}?v=${Date.now()}`);
 
@@ -77,9 +97,9 @@ function renderizarPosts() {
     artigo.innerHTML = `
       <a href="post.html?id=${post.id}" style="text-decoration:none; color:inherit;">
         <h3>${post.titulo}</h3>
-        <p><strong>Categoria:</strong> ${post.categoria}</p>
-        <p>${post.conteudo.substring(0, 120)}...</p>
-        <p><em>${new Date(post.data).toLocaleDateString("pt-PT")}</em></p>
+        <p class="post-meta"><strong>Categoria:</strong> ${post.categoria}</p>
+        <p class="post-excerpt">${resumirTexto(post.conteudo, 104)}</p>
+        <p class="post-date"><em>${formatarData(post.data)}</em></p>
       </a>
     `;
 
@@ -120,7 +140,7 @@ function renderizarPaginacao() {
     btn.textContent = i;
 
     if (i === paginaAtual) {
-      btn.style.background = "#729b52";
+      btn.classList.add("active");
     }
 
     btn.onclick = () => {
