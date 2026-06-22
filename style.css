@@ -666,4 +666,165 @@ body {
   text-align: center;
   border-top: 4px solid #020b07;
 }
+/* ===============================
+   RESPONSIVIDADE GERAL
+================================ */
 
+/* Tablets e telemóveis grandes */
+@media (max-width: 900px) {
+  .mtna-nav {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .mtna-nav a {
+    padding: 6px 10px;
+    font-size: 0.95rem;
+  }
+
+  .mtna-main {
+    padding: 20px 15px;
+  }
+
+  .blog-filtros button {
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 0.9rem;
+  }
+
+  .admin-acoes a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Telemóveis (até 600px) */
+@media (max-width: 600px) {
+  /* Header mais compacto */
+  .mtna-header {
+    padding: 10px 0;
+  }
+
+  .mtna-nav {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mtna-nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  /* Títulos */
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .subtitulo {
+    font-size: 0.95rem;
+  }
+
+  /* Botões admin */
+  .admin-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .admin-acoes a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Filtros */
+  .blog-filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .blog-filtros button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  /* Cartões do blog */
+  .lista-publica {
+    grid-template-columns: 1fr;
+  }
+
+  .post {
+    padding: 12px;
+  }
+
+  /* Footer */
+  .mtna-footer {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+}
+/* ===============================
+   RESPONSIVIDADE PARA TABLETS
+   (entre 600px e 900px)
+================================ */
+@media (min-width: 600px) and (max-width: 900px) {
+
+  /* Header mais compacto */
+  .mtna-header {
+    padding: 12px 0;
+  }
+
+  .mtna-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .mtna-nav a {
+    padding: 6px 12px;
+    font-size: 1rem;
+  }
+
+  /* Conteúdo */
+  .mtna-main {
+    padding: 25px 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitulo {
+    font-size: 1.1rem;
+  }
+
+  /* Botões admin */
+  .admin-acoes a {
+    padding: 8px 14px;
+    font-size: 1rem;
+  }
+
+  /* Filtros */
+  .blog-filtros button {
+    padding: 8px 14px;
+    font-size: 1rem;
+  }
+
+  /* Cartões */
+  .lista-publica {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .post {
+    padding: 14px;
+  }
+
+  /* Footer */
+  .mtna-footer {
+    padding: 18px;
+    font-size: 1rem;
+  }
+}
