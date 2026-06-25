@@ -15,7 +15,7 @@ app.use(express.json());
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "deus",
   database: "blog_mtna",
 });
 
@@ -28,7 +28,8 @@ app.get("/api/posts", async (req, res) => {
   try {
     const [rows] = await db.query("SELECT * FROM posts ORDER BY id DESC");
     res.json(rows);
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao obter posts" });
   }
 });
@@ -45,7 +46,8 @@ app.get("/api/posts/:id", async (req, res) => {
     }
 
     res.json(rows[0]);
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao obter post" });
   }
 });
@@ -60,7 +62,8 @@ app.post("/api/posts", async (req, res) => {
     const [result] = await db.query(sql, [titulo, categoria, conteudo]);
 
     res.json({ sucesso: true, id: result.insertId });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao criar post" });
   }
 });
@@ -79,7 +82,8 @@ app.put("/api/posts/:id", async (req, res) => {
     await db.query(sql, [titulo, categoria, conteudo, req.params.id]);
 
     res.json({ sucesso: true, mensagem: "Post atualizado com sucesso" });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao atualizar post" });
   }
 });
@@ -89,7 +93,8 @@ app.delete("/api/posts/:id", async (req, res) => {
   try {
     await db.query("DELETE FROM posts WHERE id = ?", [req.params.id]);
     res.json({ sucesso: true, mensagem: "Post apagado com sucesso" });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao apagar post" });
   }
 });
@@ -103,7 +108,8 @@ app.get("/api/topicos", async (req, res) => {
   try {
     const [rows] = await db.query("SELECT * FROM topicos ORDER BY id DESC");
     res.json(rows);
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao obter tópicos" });
   }
 });
@@ -120,7 +126,8 @@ app.get("/api/topicos/:id", async (req, res) => {
     }
 
     res.json(rows[0]);
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao obter tópico" });
   }
 });
@@ -135,7 +142,8 @@ app.post("/api/topicos", async (req, res) => {
     const [result] = await db.query(sql, [titulo, categoria, descricao, nivel]);
 
     res.json({ sucesso: true, id: result.insertId });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao criar tópico" });
   }
 });
@@ -154,7 +162,8 @@ app.put("/api/topicos/:id", async (req, res) => {
     await db.query(sql, [titulo, categoria, descricao, nivel, req.params.id]);
 
     res.json({ sucesso: true, mensagem: "Tópico atualizado com sucesso" });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao atualizar tópico" });
   }
 });
@@ -164,7 +173,8 @@ app.delete("/api/topicos/:id", async (req, res) => {
   try {
     await db.query("DELETE FROM topicos WHERE id = ?", [req.params.id]);
     res.json({ sucesso: true, mensagem: "Tópico apagado com sucesso" });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao apagar tópico" });
   }
 });
@@ -180,7 +190,8 @@ app.get("/api/contactos", async (req, res) => {
       "SELECT * FROM mensagens_contacto ORDER BY id DESC",
     );
     res.json(rows);
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao obter contactos" });
   }
 });
@@ -198,8 +209,28 @@ app.get("/api/contactos/:id", async (req, res) => {
     }
 
     res.json(rows[0]);
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao obter contacto" });
+  }
+});
+// ATUALIZAR CONTACTO
+app.put("/api/contactos/:id", async (req, res) => {
+  try {
+    const { nome, email, mensagem } = req.body;
+
+    const sql = `
+      UPDATE contactos
+      SET nome=?, email=?, mensagem=?
+      WHERE id=?
+    `;
+
+    await db.query(sql, [nome, email, mensagem, req.params.id]);
+
+    res.json({ sucesso: true, mensagem: "Contacto atualizado com sucesso" });
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
+    res.status(500).json({ erro: "Erro ao atualizar contacto" });
   }
 });
 
@@ -217,39 +248,9 @@ app.post("/api/contactos", async (req, res) => {
       mensagem: "Mensagem enviada com sucesso!",
       id: result.insertId,
     });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao enviar mensagem" });
-  }
-});
-
-// ATUALIZAR (opcional)
-app.put("/api/contactos/:id", async (req, res) => {
-  const { nome, email, mensagem } = req.body;
-
-  try {
-    const sql = `
-      UPDATE mensagens_contacto
-      SET nome=?, email=?, mensagem=?
-      WHERE id=?
-    `;
-
-    const [result] = await db.query(sql, [
-      nome,
-      email,
-      mensagem,
-      req.params.id,
-    ]);
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ erro: "Contacto não encontrado" });
-    }
-
-    res.json({
-      sucesso: true,
-      mensagem: "Contacto atualizado com sucesso",
-    });
-  } catch {
-    res.status(500).json({ erro: "Erro ao atualizar contacto" });
   }
 });
 
@@ -264,7 +265,8 @@ app.delete("/api/contactos/:id", async (req, res) => {
       sucesso: true,
       mensagem: "Mensagem apagada com sucesso",
     });
-  } catch {
+  } catch (erro) {
+    console.error("Erro MySQL:", erro);
     res.status(500).json({ erro: "Erro ao apagar mensagem" });
   }
 });
