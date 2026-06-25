@@ -8,15 +8,12 @@ let postsFiltrados = [];
 let paginaAtual = 1;
 const postsPorPagina = 6;
 
+// ===============================
+// FUNÇÕES DE APOIO
+// ===============================
 function resumirTexto(texto, limite) {
-  if (!texto) {
-    return "";
-  }
-
-  if (texto.length <= limite) {
-    return texto;
-  }
-
+  if (!texto) return "";
+  if (texto.length <= limite) return texto;
   return `${texto.slice(0, limite).trimEnd()}...`;
 }
 
@@ -48,10 +45,7 @@ async function carregarPosts() {
   } catch (erro) {
     console.error("Erro ao carregar posts:", erro);
     const lista = document.getElementById("lista-publica");
-
-    if (lista) {
-      lista.innerHTML = "<p>Não foi possível carregar os posts.</p>";
-    }
+    if (lista) lista.innerHTML = "<p>Não foi possível carregar os posts.</p>";
   }
 }
 
@@ -74,10 +68,7 @@ function aplicarFiltro(categoria) {
 // ===============================
 function renderizarPosts() {
   const lista = document.getElementById("lista-publica");
-
-  if (!lista) {
-    return;
-  }
+  if (!lista) return;
 
   lista.innerHTML = "";
 
@@ -112,17 +103,12 @@ function renderizarPosts() {
 // ===============================
 function renderizarPaginacao() {
   const paginacao = document.getElementById("paginacao");
-
-  if (!paginacao) {
-    return;
-  }
+  if (!paginacao) return;
 
   const totalPaginas = Math.ceil(postsFiltrados.length / postsPorPagina);
   paginacao.innerHTML = "";
 
-  if (totalPaginas <= 1) {
-    return;
-  }
+  if (totalPaginas <= 1) return;
 
   if (paginaAtual > 1) {
     const btnAnterior = document.createElement("button");
@@ -139,9 +125,7 @@ function renderizarPaginacao() {
     const btn = document.createElement("button");
     btn.textContent = i;
 
-    if (i === paginaAtual) {
-      btn.classList.add("active");
-    }
+    if (i === paginaAtual) btn.classList.add("active");
 
     btn.onclick = () => {
       paginaAtual = i;
@@ -179,6 +163,35 @@ document.querySelectorAll(".blog-filtros button").forEach((btn) => {
 });
 
 // ===============================
-// 6. INICIAR
+// 6. MOSTRAR/ESCONDER PAINEL ADMIN
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const adminAcoes = document.querySelector(".admin-acoes");
+
+  if (adminAcoes) {
+    if (localStorage.getItem("admin") === "true") {
+      adminAcoes.style.display = "block";
+    } else {
+      adminAcoes.style.display = "none";
+    }
+  }
+});
+
+// ===============================
+// 7. LOGOUT DO ADMIN
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const btnSair = document.getElementById("btnSair");
+
+  if (btnSair) {
+    btnSair.addEventListener("click", () => {
+      localStorage.removeItem("admin");
+      window.location.href = "blogmtna.html";
+    });
+  }
+});
+
+// ===============================
+// 8. INICIAR
 // ===============================
 carregarPosts();

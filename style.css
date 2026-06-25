@@ -704,13 +704,12 @@ body {
   margin-right: 10px;
 }
 
-.btn-sair {
-  background: #b30000;
-  padding: 10px 18px;
-  border-radius: 6px;
-  color: white;
-  text-decoration: none;
+
+ .btn-sair {
+  display: none;
 }
+
+
 
 /* FILTROS */
 .blog-filtros {
