@@ -16,9 +16,8 @@ const db = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "deus",
-  database: "blog_mtna",
+  database: "mtna_blog_db"
 });
-
 // ===============================
 //  ROTAS POSTS
 // ===============================
@@ -220,7 +219,7 @@ app.put("/api/contactos/:id", async (req, res) => {
     const { nome, email, mensagem } = req.body;
 
     const sql = `
-      UPDATE contactos
+      UPDATE mensagens_contacto
       SET nome=?, email=?, mensagem=?
       WHERE id=?
     `;
