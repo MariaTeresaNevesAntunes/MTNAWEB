@@ -692,16 +692,18 @@ body {
 
 /* BOTÕES ADMIN */
 .admin-acoes {
-  margin: 20px 0;
+  text-align: right;
+ ;
+    
 }
 
 .btn-admin {
-  background: #4caf50;
+  background: #214721;
   padding: 10px 18px;
   border-radius: 6px;
   color: white;
   text-decoration: none;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 
@@ -727,7 +729,7 @@ body {
 }
 
 .blog-filtros button.ativo {
-  background: #729b52;
+  background: #2f4320;
 }
 
 /* POSTS */
@@ -768,8 +770,11 @@ body {
     width: 100%;
     padding: 15px 10px;
     text-align: center;
+
     border-top: 4px solid #020b07;
     color: white;
     z-index: 9999;
-  }
+  
+
+}
 }

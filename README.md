@@ -1,202 +1,181 @@
-Maria Teresa…  
-vamos fazer um **README.md profissional**, bonito, organizado e exatamente no formato que o formador espera ver.  
-Este README explica tudo: instalação, endpoints, tecnologias, estrutura e testes.
+MTNA Blog – Projeto Final IEFP
+Aplicação Web com Frontend + Backend + Base de Dados MySQL
 
-Podes copiar e colar diretamente no GitHub ou entregar em PDF.
+1.  Objetivo do Projeto
 
----
+    O objetivo deste projeto é desenvolver uma aplicação web completa — Blog MTNA — que permite:
 
-# ⭐ **README.md — Projeto Final IEFP (Versão Profissional)**
+Visualizar artigos de matemática
 
-```markdown
-# 📘 Projeto Final — API REST com Node.js, Express e MySQL
+Filtrar por tópicos/categorias
 
-Este projeto consiste na criação de uma API REST completa para gerir **Posts**, **Tópicos** e **Contactos**, desenvolvida com **Node.js**, **Express** e **MySQL**.  
-Inclui operações CRUD completas e foi testado com Postman.
+Enviar mensagens de contacto
 
----
+Gerir conteúdos através de um Painel de Administração
 
-## 🚀 Tecnologias Utilizadas
+Criar, editar e apagar posts e tópicos
 
-- **Node.js**
-- **Express**
-- **MySQL (mysql2/promise)**
-- **CORS**
-- **Postman** (para testes)
-- **JavaScript ES6**
+Guardar mensagens de contacto na base de dados
 
----
+O projeto inclui Frontend, Backend (Node.js/Express) e Base de Dados MySQL.
 
-## 📂 Estrutura do Projeto
-```
+2.  Tecnologias Utilizadas
 
-server.js
+Frontend
+
+HTML5
+
+CSS3
+
+JavaScript (Fetch API)
+
+Backend
+
+Node.js
+
+Express.js
+
+Nodemon (ambiente de desenvolvimento)
+
+Base de Dados
+
+MySQL
+
+MySQL Workbench
+
+3. Estrutura do Projeto
+
+projeto-final/
 │
-├── Conexão MySQL
-├── Middlewares (express.json, cors)
+├── frontend/
+│ ├── indexmtna.html
+│ ├── blogmtna.html
+│ ├── galmtna.html
+│ ├── sobrmtna.html
+│ ├── contmtna.html
+│ ├── topicos.html
+│ ├── style.css
+│ └── app.js
+ 
 │
-├── Rotas POSTS
-│ ├── GET /api/posts
-│ ├── GET /api/posts/:id
-│ ├── POST /api/posts
-│ ├── PUT /api/posts/:id
-│ └── DELETE /api/posts/:id
+├── backend/
+│ ├── server.js
+│ ├── package.json
+│ ├── package-lock.json
+│ ├── .env.example
+│ └── database.sql ← exportado do MySQL
 │
-├── Rotas TOPICOS
-│ ├── GET /api/topicos
-│ ├── GET /api/topicos/:id
-│ ├── POST /api/topicos
-│ ├── PUT /api/topicos/:id
-│ └── DELETE /api/topicos/:id
-│
-├── Rotas CONTACTOS
-│ ├── GET /api/contactos
-│ ├── GET /api/contactos/:id
-│ ├── POST /api/contactos
-│ ├── PUT /api/contactos/:id
-│ └── DELETE /api/contactos/:id
-│
-└── app.listen(...)
+└── README.md
 
-````
+4. Instalação das Dependências (Backend)
+   4.1 Abrir o terminal na pasta backend:
 
----
+cd backend
 
-## 🗄️ Base de Dados
+    4.2 Instalar dependências:
 
-### Tabela: **posts**
-
-| Campo      | Tipo         |
-|------------|--------------|
-| id         | INT PK AI    |
-| titulo     | VARCHAR(255) |
-| categoria  | VARCHAR(255) |
-| conteudo   | TEXT         |
-| data_criacao | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
-
----
-
-### Tabela: **topicos**
-
-| Campo      | Tipo         |
-|------------|--------------|
-| id         | INT PK AI    |
-| titulo     | VARCHAR(255) |
-| categoria  | VARCHAR(255) |
-| descricao  | TEXT         |
-| nivel      | VARCHAR(50)  |
-| data_criacao | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
-
----
-
-### Tabela: **mensagens_contacto**
-
-| Campo      | Tipo         |
-|------------|--------------|
-| id         | INT PK AI    |
-| nome       | VARCHAR(255) |
-| email      | VARCHAR(255) |
-| mensagem   | TEXT         |
-| data_envio | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
-
----
-
-## ⚙️ Instalação
-
-1. Clonar o repositório:
-```bash
-git clone <url-do-repo>
-````
-
-2. Instalar dependências:
-
-```bash
 npm install
-```
 
-3. Configurar a base de dados no MySQL:
+5. Configuração do Ficheiro .env
 
-```sql
-CREATE DATABASE blog_mtna;
-```
+Criar um ficheiro .env dentro da pasta backend com:
 
-4. Criar as tabelas (posts, topicos, mensagens_contacto).
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD= A_TUA_PASSWORD
+DB_NAME=mtna_blog_db
+PORT=3000
 
-5. Iniciar o servidor:
+O ficheiro .env.example está incluído como referência.
 
-```bash
+6.  Importar a Base de Dados
+
+    6.1 Abrir MySQL Workbench
+
+    6.2 Ir a Server → Data Import
+
+    6.3 Escolher o ficheiro:
+
+backend/database.sql
+
+    6.4 Importar estrutura + dados
+
+7. Como Executar o Backend
+
+Dentro da pasta backend:
+
+Desenvolvimento (com nodemon):
+
+npm run dev
+
+Produção:
+
 node server.js
-```
 
-Servidor disponível em:
+O servidor ficará disponível em:
 
-```
-http://localhost:3000
-```
+http://localhost:3000.
 
----
+8. Como Abrir o Frontend
 
-## 📡 Endpoints da API
+Basta abrir o ficheiro:
 
-### 📌 POSTS
+frontend/indexmtna.html
+ou qualquer outra página HTML.
 
-| Método | Endpoint       | Descrição    |
-| ------ | -------------- | ------------ |
-| GET    | /api/posts     | Listar todos |
-| GET    | /api/posts/:id | Obter por ID |
-| POST   | /api/posts     | Criar novo   |
-| PUT    | /api/posts/:id | Atualizar    |
-| DELETE | /api/posts/:id | Apagar       |
+9. Rotas da API (Backend)
 
----
+Mensagens de Contacto
 
-### 📌 TÓPICOS
+| Método | Rota               | Descrição                |
+| ------ | ------------------ | ------------------------ |
+| GET    | /api/contactos     | Lista todas as mensagens |
+| GET    | /api/contactos/:id | Obtém uma mensagem       |
+| POST   | /api/contactos     | Cria nova mensagem       |
+| PUT    | /api/contactos/:id | Atualiza mensagem        |
+| DELETE | /api/contactos/:id | Apaga mensagem           |
 
-| Método | Endpoint         | Descrição    |
-| ------ | ---------------- | ------------ |
-| GET    | /api/topicos     | Listar todos |
-| GET    | /api/topicos/:id | Obter por ID |
-| POST   | /api/topicos     | Criar novo   |
-| PUT    | /api/topicos/:id | Atualizar    |
-| DELETE | /api/topicos/:id | Apagar       |
+10. Exemplos de Requests
 
----
+    POST /api/contactos
 
-### 📌 CONTACTOS
+    {
+    "nome": "Maria",
+    "email": "maria@example.com",
+    "mensagem": "Olá, gostei do blog!"
+    }
 
-| Método | Endpoint           | Descrição          |
-| ------ | ------------------ | ------------------ |
-| GET    | /api/contactos     | Listar todos       |
-| GET    | /api/contactos/:id | Obter por ID       |
-| POST   | /api/contactos     | Criar mensagem     |
-| PUT    | /api/contactos/:id | Atualizar mensagem |
-| DELETE | /api/contactos/:id | Apagar mensagem    |
+    PUT /api/contactos/1
 
----
+    {
+    "nome": "Maria Atualizada",
+    "email": "maria@example.com",
+    "mensagem": "Mensagem atualizada"
+    }
 
-## 🧪 Testes com Postman
+11. Testes no Postman
 
-Todos os endpoints foram testados com:
+    Selecionar método correto (GET, POST, PUT, DELETE)
 
-- GET (listar e obter por ID)
-- POST (criação)
-- PUT (edição)
-- DELETE (remoção)
+Para POST/PUT → Body → raw → JSON
 
-As respostas retornam sempre JSON estruturado.
+URL base:
 
----
+http://localhost:3000/api/
 
-## 🏁 Conclusão
+12. Notas Finais
 
-Este projeto cumpre todos os requisitos do módulo:
+    O projeto foi desenvolvido como Projeto Final do Curso de Técnico/a de Informática – Instalação e Gestão de Redes (IEFP).
 
-✔ CRUD completo  
-✔ API REST funcional  
-✔ MySQL integrado  
-✔ Testado no Postman  
-✔ Código organizado e profissional
+    Todo o código foi organizado, validado e testado.
 
-```
+    A base de dados foi exportada e incluída no projeto.
 
-```
+    O backend e o frontend comunicam via Fetch API.
+
+13. Autoria
+
+    Projeto desenvolvido por:
+
+    Maria Teresa Neves Antunes  
+     Aveiro, 25/06/2026.
